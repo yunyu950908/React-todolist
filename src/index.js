@@ -5,16 +5,14 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
 
-class Welcome extends React.Component {
-    render() {
-        return <h1>Hello, Component</h1>;
-    }
-}
+import Welcome from './Welcome'
 
 ReactDOM.render(
-    <Welcome/>,
+    <Welcome name="wtf"/>,
     document.getElementById('root')
 )
+
+
 
 
 
