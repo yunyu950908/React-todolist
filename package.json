@@ -13,5 +13,5 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "homepage": "http://yunyu950908.github.io/React-todolist"
+  "homepage": "http://yunyu950908.github.io/React-todolist/build"
 }
