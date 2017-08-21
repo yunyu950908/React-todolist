@@ -55,7 +55,7 @@ class Welcome extends React.Component {
         })
         return true;
     }
-    
+
     componentWillUnmount() {
         console.log('这里是componentWillUnmount 要死咯')
     }
