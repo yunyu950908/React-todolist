@@ -23,10 +23,6 @@ class Welcome extends React.Component {
 
 
     render() {
-        this.setState({
-            date: new Date(),
-            test: 'render'
-        })
         console.log("这里是render")
         return (
             <div>
@@ -57,15 +53,9 @@ class Welcome extends React.Component {
             date: new Date(),
             test: 'shouldComponentUpdate'
         })
+        return true;
     }
-
-    componentWillUpdate() {
-        this.setState({
-            date: new Date(),
-            test: 'componentWillUpdate'
-        })
-    }
-
+    
     componentWillUnmount() {
         console.log('这里是componentWillUnmount 要死咯')
     }
