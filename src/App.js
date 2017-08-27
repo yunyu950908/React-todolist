@@ -1,14 +1,21 @@
 import React, {Component} from 'react';
-import './App.css';
-import TodoInput from './TodoInput';
-import TodoItem from './TodoItem';
-import 'normalize.css';
+// CSS reset
 import './reset.css';
+// CSS normalize
+import 'normalize.css';
+// CSS APP
+import './App.css';
+// Component TodoInput
+import TodoInput from './TodoInput';
+// Component TodoItem
+import TodoItem from './TodoItem';
 
-
+// Component App
 class App extends Component {
     constructor(props) {
+        // 子类必须在constructor方法中调用super方法，否则新建实例时会报错。这是因为子类没有自己的this对象，而是继承父类的this对象，然后对其进行加工。如果不调用super方法，子类就得不到this对象。
         super(props)
+        // 存储数据与状态
         this.state = {
             newTodo: '',
             todoList: []
@@ -16,10 +23,14 @@ class App extends Component {
     }
 
     render() {
+        // todos 存储 TodoItem
         let todos = this.state.todoList
+        // 过滤出还存在的Todo
             .filter((item) => !item.deleted)
+            // 遍历每一个还在的Todo
             .map((item, index) => {
                 return (
+                    // 返回TodoItem存进todos
                     <li key={index}>
                         <TodoItem todo={item}
                                   onToggle={this.toggle.bind(this)}
@@ -27,15 +38,21 @@ class App extends Component {
                     </li>
                 )
             })
+        // 返回最终要渲染到页面的内容
         return (
             <div className="App">
                 <h1>我的代办</h1>
                 <div className="inputWrapper">
-                    <TodoInput
-                        content={this.state.newTodo}
-                        onSubmit={this.addTodo.bind(this)}
-                        onChange={this.changeTitle.bind(this)}/>
+                    {/*
+                     ** content 存储输入的 newTodo
+                     ** onSubmit 存储自定义函数 addTodo
+                     ** onChange 存储自定义函数 changeTitle
+                     **/}
+                    <TodoInput content={this.state.newTodo}
+                               onSubmit={this.addTodo.bind(this)}
+                               onChange={this.changeTitle.bind(this)}/>
                 </div>
+                {/* 用一个有序列表存储 Todos */}
                 <ol className='todoList'>
                     {todos}
                 </ol>
@@ -43,16 +60,19 @@ class App extends Component {
         );
     }
 
+    // 删除一个 TodoItem
     delete(event, todo) {
         todo.deleted = true;
         this.setState(this.state);
     }
 
+    // 切换 TodoItem 状态
     toggle(e, todo) {
         todo.states = todo.status === 'completed' ? '' : 'completed';
         this.setState(this.state)
     }
 
+    // 让TotoInput从只读变为可写
     changeTitle(event) {
         this.setState({
             newTodo: event.target.value,
@@ -60,6 +80,7 @@ class App extends Component {
         })
     }
 
+    // 在TodoList里添加一个Todo
     addTodo(event) {
         this.state.todoList.push({
             id: idMaker(),
@@ -74,11 +95,13 @@ class App extends Component {
     }
 }
 
-export default App;
-
+// 创建 ID
 let id = 0;
-
 function idMaker() {
     id += 1;
     return id;
 }
+
+// 模块出口
+export default App;
+
