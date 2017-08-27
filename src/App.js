@@ -49,7 +49,7 @@ class App extends Component {
     }
 
     toggle(e, todo) {
-        todo.states = todo.status == 'completed' ? '' : 'completed';
+        todo.states = todo.status === 'completed' ? '' : 'completed';
         this.setState(this.state)
     }
 
