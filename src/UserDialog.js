@@ -4,7 +4,7 @@ import "./UserDialog.css"
 export default class UserDialog extends Component {
     render() {
         return (
-            <dic className="UserDialog-Wrapper">
+            <div className="UserDialog-Wrapper">
                 <div className="UserDialog">
                     <nav>
                         <input type="radio"/>注册
@@ -41,7 +41,7 @@ export default class UserDialog extends Component {
                         </form>
                     </div>
                 </div>
-            </dic>
+            </div>
         )
     }
 }
