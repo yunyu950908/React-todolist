@@ -1,11 +1,16 @@
 import React, {Component} from "react";
 import "./UserDialog.css"
 
+// Component UserDialog
 export default class UserDialog extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            selected: "signUp"
+            selected: "signUp",
+            formData: {
+                username: '',
+                password: ''
+            }
         }
     }
 
@@ -16,17 +21,41 @@ export default class UserDialog extends Component {
         })
     }
 
+    signUp(e) {
+    }
+
+    signIn(e) {
+    }
+
+    changeUsername(e) {
+        // this.state中有个formData对象，注意深拷贝
+        let stateCopy = JSON.parse(JSON.stringify(this.state));
+        stateCopy.formData.username = e.target.value;
+        this.setState(stateCopy);
+    }
+
+    changePassword(e) {
+        let stateCopy = JSON.parse(JSON.stringify(this.state));
+        stateCopy.formData.password = e.target.value;
+        this.setState(stateCopy);
+    }
+
     render() {
         // {/* 注册 */}
         let signUpForm = (
-            <form action="" className="signUp">
+            <form className="signUp"
+                  onSubmit={this.signUp.bind(this)}>
                 <div className="row">
                     <laberl>用户名</laberl>
-                    <input type="text"/>
+                    <input type="text"
+                           value={this.state.formData.username}
+                           onChange={this.changeUsername.bind(this)}/>
                 </div>
                 <div className="row">
                     <laberl>密码</laberl>
-                    <input type="password"/>
+                    <input type="password"
+                           value={this.state.formData.password}
+                           onChange={this.changePassword.bind(this)}/>
                 </div>
                 <div className="row action">
                     <buttom type="submit">注册</buttom>
@@ -35,14 +64,19 @@ export default class UserDialog extends Component {
         )
         // {/* 登录 */}
         let signInForm = (
-            <form action="" className="signIn">
+            <form className="signIn"
+                  onSubmit={this.signIn.bind(this)}>
                 <div className="row">
                     <label htmlFor="">用户名</label>
-                    <input type="text"/>
+                    <input type="text"
+                           value={this.state.formData.username}
+                           onchange={this.changeUsername.bind(this)}/>
                 </div>
                 <div className="row">
                     <label htmlFor="">密码</label>
-                    <input type="password"/>
+                    <input type="password"
+                           value={this.state.formData.password}
+                           onchange={this.changePassword.bind(this)}/>
                 </div>
                 <div className="row action">
                     <button type="submit">登录</button>
