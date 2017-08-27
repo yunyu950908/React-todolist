@@ -5,20 +5,21 @@ import './reset.css';
 import 'normalize.css';
 // CSS APP
 import './App.css';
-// Component TodoInput
+// Component
 import TodoInput from './TodoInput';
-// Component TodoItem
 import TodoItem from './TodoItem';
+import * as localStore from './localStorage';
+
 
 // Component App
 class App extends Component {
     constructor(props) {
         // 子类必须在constructor方法中调用super方法，否则新建实例时会报错。这是因为子类没有自己的this对象，而是继承父类的this对象，然后对其进行加工。如果不调用super方法，子类就得不到this对象。
         super(props)
-        // 存储数据与状态
+        // 存储数据与状态，载入localStorage
         this.state = {
             newTodo: '',
-            todoList: []
+            todoList: localStore.load("todoList") || []
         }
     }
 
@@ -60,27 +61,30 @@ class App extends Component {
         );
     }
 
-    // 删除一个 TodoItem
+    // 删除一个 TodoItem，修改localStorage
     delete(event, todo) {
         todo.deleted = true;
         this.setState(this.state);
+        localStore.save("todoList", this.state.todoList)
     }
 
-    // 切换 TodoItem 状态
+    // 切换 TodoItem 状态，修改localStorage
     toggle(e, todo) {
         todo.states = todo.status === 'completed' ? '' : 'completed';
-        this.setState(this.state)
+        this.setState(this.state);
+        localStore.save("todoList", this.state.todoList);
     }
 
-    // 让TotoInput从只读变为可写
+    // 让TotoInput从只读变为可写，修改localStorage
     changeTitle(event) {
         this.setState({
             newTodo: event.target.value,
             todoList: this.state.todoList
         })
+        localStore.save("todoList", this.state.todoList)
     }
 
-    // 在TodoList里添加一个Todo
+    // 在TodoList里添加一个Todo，修改localStorage
     addTodo(event) {
         this.state.todoList.push({
             id: idMaker(),
@@ -92,6 +96,7 @@ class App extends Component {
             newTodo: '',
             todoList: this.state.todoList
         })
+        localStore.save("todoList", this.state.todoList)
     }
 }
 
