@@ -27,16 +27,10 @@ export default class UserDialog extends Component {
     signIn(e) {
     }
 
-    changeUsername(e) {
+    changeFormData(key, e) {
         // this.state中有个formData对象，注意深拷贝
         let stateCopy = JSON.parse(JSON.stringify(this.state));
-        stateCopy.formData.username = e.target.value;
-        this.setState(stateCopy);
-    }
-
-    changePassword(e) {
-        let stateCopy = JSON.parse(JSON.stringify(this.state));
-        stateCopy.formData.password = e.target.value;
+        stateCopy.formData[key] = e.target.value;
         this.setState(stateCopy);
     }
 
@@ -49,13 +43,13 @@ export default class UserDialog extends Component {
                     <laberl>用户名</laberl>
                     <input type="text"
                            value={this.state.formData.username}
-                           onChange={this.changeUsername.bind(this)}/>
+                           onChange={this.changeFormData.bind(this, "username")}/>
                 </div>
                 <div className="row">
                     <laberl>密码</laberl>
                     <input type="password"
                            value={this.state.formData.password}
-                           onChange={this.changePassword.bind(this)}/>
+                           onChange={this.changeFormData.bind(this, "password")}/>
                 </div>
                 <div className="row action">
                     <buttom type="submit">注册</buttom>
@@ -70,13 +64,13 @@ export default class UserDialog extends Component {
                     <label htmlFor="">用户名</label>
                     <input type="text"
                            value={this.state.formData.username}
-                           onchange={this.changeUsername.bind(this)}/>
+                           onchange={this.changeFormData.bind(this, "username")}/>
                 </div>
                 <div className="row">
                     <label htmlFor="">密码</label>
                     <input type="password"
                            value={this.state.formData.password}
-                           onchange={this.changePassword.bind(this)}/>
+                           onchange={this.changeFormData.bind(this, "password")}/>
                 </div>
                 <div className="row action">
                     <button type="submit">登录</button>
