@@ -8,6 +8,7 @@ import './App.css';
 // Component
 import TodoInput from './TodoInput';
 import TodoItem from './TodoItem';
+import UserDialog from './UserDialog';
 
 // Component App
 class App extends Component {
@@ -54,13 +55,14 @@ class App extends Component {
                 <ol className='todoList'>
                     {todos}
                 </ol>
+                <UserDialog/>
             </div>
         );
     }
 
     // componentDidUpdate 在组件更新之后调用
     componentDidUpdate() {
-        
+
     }
 
     // 删除一个 TodoItem，修改localStorage
