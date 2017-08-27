@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import "./UserDialog.css"
 
 export default class UserDialog extends Component {
     render() {
@@ -14,6 +15,10 @@ export default class UserDialog extends Component {
                         <form action="" className="signUp">
                             <div className="row">
                                 <laberl>用户名</laberl>
+                                <input type="text"/>
+                            </div>
+                            <div className="row">
+                                <laberl>密码</laberl>
                                 <input type="password"/>
                             </div>
                             <div className="row action">

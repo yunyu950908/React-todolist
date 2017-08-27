@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
-// CSS reset
+// CSS
 import './reset.css';
-// CSS normalize
 import 'normalize.css';
-// CSS APP
 import './App.css';
 // Component
 import TodoInput from './TodoInput';
@@ -22,6 +20,7 @@ class App extends Component {
     }
 
     render() {
+        console.log(1);
         // todos 存储 TodoItem
         let todos = this.state.todoList
         // 过滤出还存在的Todo
