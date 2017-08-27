@@ -74,7 +74,7 @@ class App extends Component {
 
     // 切换 TodoItem 状态，修改localStorage
     toggle(e, todo) {
-        todo.states = todo.status === 'completed' ? '' : 'completed';
+        todo.status = todo.status === 'completed' ? '' : 'completed';
         this.setState(this.state);
     }
 

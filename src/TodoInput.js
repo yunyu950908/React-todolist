@@ -4,9 +4,9 @@ import './TodoInput.css';
 // Component TodoInput
 export default class TodoInput extends Component {
     render() {
+        {/*通知<App/>改value*/}
         return <input type="text"
                       className="TodoInput"
-                      {/*通知<App/>改value*/}
                       value={this.props.content}
                       onKeyPress={this.submit.bind(this)}
                       onChange={this.changeTitle.bind(this)}/>

@@ -6,8 +6,8 @@ export default class TodoItem extends Component {
     render() {
         return (
             <div className='TodoItem'>
+                {/*通知<App/>改checkbox状态*/}
                 <input type="checkbox"
-                       {/*通知<App/>改checkbox状态*/}
                        checked={this.props.todo.status}
                        onChange={this.toggle.bind(this)}/>
                 {/*通知<App/>改TodoInput的span*/}
