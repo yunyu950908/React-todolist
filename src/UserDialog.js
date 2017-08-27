@@ -17,6 +17,39 @@ export default class UserDialog extends Component {
     }
 
     render() {
+        // {/* 注册 */}
+        let signUpForm = (
+            <form action="" className="signUp">
+                <div className="row">
+                    <laberl>用户名</laberl>
+                    <input type="text"/>
+                </div>
+                <div className="row">
+                    <laberl>密码</laberl>
+                    <input type="password"/>
+                </div>
+                <div className="row action">
+                    <buttom type="submit">注册</buttom>
+                </div>
+            </form>
+        )
+        // {/* 登录 */}
+        let signInForm = (
+            <form action="" className="signIn">
+                <div className="row">
+                    <label htmlFor="">用户名</label>
+                    <input type="text"/>
+                </div>
+                <div className="row">
+                    <label htmlFor="">密码</label>
+                    <input type="password"/>
+                </div>
+                <div className="row action">
+                    <button type="submit">登录</button>
+                </div>
+            </form>
+        )
+
         return (
             <div className="UserDialog-Wrapper">
                 <div className="UserDialog">
@@ -30,34 +63,8 @@ export default class UserDialog extends Component {
                                                  checked={this.state.selected === "signIn"}/>登录</label>
                     </nav>
                     <div className="panes">
-                        {/* 注册 */}
-                        <form action="" className="signUp">
-                            <div className="row">
-                                <laberl>用户名</laberl>
-                                <input type="text"/>
-                            </div>
-                            <div className="row">
-                                <laberl>密码</laberl>
-                                <input type="password"/>
-                            </div>
-                            <div className="row action">
-                                <buttom type="submit">注册</buttom>
-                            </div>
-                        </form>
-                        {/* 登录 */}
-                        <form action="" className="signIn">
-                            <div className="row">
-                                <label htmlFor="">用户名</label>
-                                <input type="text"/>
-                            </div>
-                            <div className="row">
-                                <label htmlFor="">密码</label>
-                                <input type="password"/>
-                            </div>
-                            <div className="row action">
-                                <button type="submit">登录</button>
-                            </div>
-                        </form>
+                        {this.state.selected === 'signUp' ? signUpForm : null}
+                        {this.state.selected === 'signIn' ? signInForm : null}
                     </div>
                 </div>
             </div>
