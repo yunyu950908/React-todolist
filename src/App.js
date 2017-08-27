@@ -16,7 +16,7 @@ class App extends Component {
         // 存储数据与状态，载入localStorage
         this.state = {
             newTodo: '',
-            todoList: localStore.load("todoList") || []
+            todoList: []
         }
     }
 
@@ -60,7 +60,7 @@ class App extends Component {
 
     // componentDidUpdate 在组件更新之后调用
     componentDidUpdate() {
-        localStore.save("todoList", this.state.todoList)
+        
     }
 
     // 删除一个 TodoItem，修改localStorage
