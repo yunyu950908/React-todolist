@@ -34,7 +34,28 @@ export default class UserDialog extends Component {
             console.log(user)
         }
         let error = (error) => {
-            alert(error)
+            // console.log(error.code);
+            switch (error.code) {
+                case 200:
+                    alert("用户名不能为空");
+                    break;
+                case 201:
+                    alert("密码不能为空");
+                    break;
+                case 202:
+                    alert("该用户已存在");
+                    break;
+                case 217:
+                    alert("无效的用户名");
+                    break;
+                case 218:
+                    alert("无效的密码");
+                    break;
+                default:
+                    console.log(error);
+                    alert("未知错误");
+                    break;
+            }
         }
         signUp(username, password, success, error)
     }
@@ -47,7 +68,36 @@ export default class UserDialog extends Component {
             this.props.onSignIn.call(null, user)
         }
         let error = (error) => {
-            alert(error);
+            // console.log(error.code);
+            switch (error.code) {
+                case 200:
+                    alert("用户名不能为空");
+                    break;
+                case 201:
+                    alert("密码不能为空");
+                    break;
+                case 210:
+                    alert("用户名与密码不匹配");
+                    break;
+                case 211:
+                    alert("该用户不存在");
+                    break;
+                case 217:
+                    alert("无效的用户名");
+                    break;
+                case 218:
+                    alert("无效的密码");
+                    break;
+                case 219:
+                    alert("登录失败次数超过限制，请稍15分钟后再试");
+                    break;
+
+                default:
+                    console.log(error);
+                    alert("未知错误");
+                    break;
+            }
+
         }
         signIn(username, password, success, error)
     }

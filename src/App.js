@@ -43,7 +43,9 @@ class App extends Component {
             <div className="App">
                 <h1>
                     {this.state.user.username || "我"}的待办清单
-                    {this.state.user.id ? <button onClick={this.signOut.bind(this)}>登出</button> : null}
+                    {this.state.user.id ?
+                        <button onClick={this.signOut.bind(this)}>登出</button> :
+                        null}
                 </h1>
                 <div className="inputWrapper">
                     {/*
@@ -61,31 +63,25 @@ class App extends Component {
                 </ol>
                 {this.state.user.id ?
                     null :
-                    <UserDialog onSignUp={this.onSignUp.bind(this)}
-                                onSignIn={this.onSignIn.bind(this)}/>}
+                    <UserDialog onSignUp={this.onSignUpOrSignIn.bind(this)}
+                                onSignIn={this.onSignUpOrSignIn.bind(this)}/>}
             </div>
         );
     }
 
-    // 登录功能
-    onSignIn(user) {
+    // 登录/注册
+    onSignUpOrSignIn(user) {
         let stateCopy = JSON.parse(JSON.stringify(this.state));
         stateCopy.user = user;
         this.setState(stateCopy);
     }
+
 
     // 登出功能
     signOut() {
         signOut()
         let stateCopy = JSON.parse(JSON.stringify(this.state));
         stateCopy.user = {};
-        this.setState(stateCopy)
-    }
-
-    // 注册功能
-    onSignUp(user) {
-        let stateCopy = JSON.parse(JSON.stringify(this.state));
-        stateCopy.user = user;
         this.setState(stateCopy)
     }
 
