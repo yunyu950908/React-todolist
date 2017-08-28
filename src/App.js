@@ -7,7 +7,7 @@ import './App.css';
 import TodoInput from './TodoInput';
 import TodoItem from './TodoItem';
 import UserDialog from './UserDialog';
-import {getCurrentUser} from "./leanCloud"
+import {getCurrentUser, signOut} from "./leanCloud"
 
 // Component App
 class App extends Component {
@@ -41,7 +41,10 @@ class App extends Component {
         // 返回最终要渲染到页面的内容
         return (
             <div className="App">
-                <h1>{this.state.user.username || "我"}的待办清单</h1>
+                <h1>
+                    {this.state.user.username || "我"}的待办清单
+                    {this.state.user.id ? <button onClick={this.signOut.bind(this)}>登出</button> : null}
+                </h1>
                 <div className="inputWrapper">
                     {/*
                      ** content 存储输入的 newTodo
@@ -61,7 +64,15 @@ class App extends Component {
         );
     }
 
-    //注册效果
+    // 登出功能
+    signOut() {
+        signOut()
+        let stateCopy = JSON.parse(JSON.stringify(this.state));
+        stateCopy.user = {};
+        this.setState(stateCopy)
+    }
+
+    // 注册功能
     onSignUp(user) {
         let stateCopy = JSON.parse(JSON.stringify(this.state));
         stateCopy.user = user;
