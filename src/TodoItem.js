@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './TodoItem.css';
+import {uploadTodos} from "./leanCloud"
 
 // Component TodoItem
 export default class TodoItem extends Component {

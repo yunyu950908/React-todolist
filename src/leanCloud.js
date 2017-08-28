@@ -14,6 +14,7 @@ AV.init({
  testObject.save({
  words: 'Hello World!'
  }).then(function (object) {
+ console.log(object)
  alert('LeanCloud Rocks!')
  })
  */
@@ -32,7 +33,7 @@ export function signUp(username, password, successFn, errorFn) {
         let user = getUserFromAVUser(loginedUser);
         successFn.call(null, user);
     }, function (error) {
-        errorFn.call(null, error)
+        errorFn.call(null, error);
     })
     return undefined
 }
@@ -40,14 +41,15 @@ export function signUp(username, password, successFn, errorFn) {
 export function signIn(username, password, successFn, errorFn) {
     AV.User.logIn(username, password).then(function (loginedUser) {
         let user = getUserFromAVUser(loginedUser);
-        successFn.call(null, user)
+        console.log(user)
+        successFn.call(null, user);
     }, function (error) {
-        errorFn.call(null, error)
+        errorFn.call(null, error);
     })
 }
 
 export function getCurrentUser() {
-    let user = AV.User.current()
+    let user = AV.User.current();
     if (user) {
         return getUserFromAVUser(user)
     } else {
@@ -60,6 +62,7 @@ export function signOut() {
     return undefined;
 }
 
+// 获取 leanCloud 存储的User信息
 function getUserFromAVUser(AVUser) {
     return {
         id: AVUser.id,

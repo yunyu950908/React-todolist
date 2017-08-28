@@ -7,7 +7,7 @@ import './App.css';
 import TodoInput from './TodoInput';
 import TodoItem from './TodoItem';
 import UserDialog from './UserDialog';
-import {getCurrentUser, signOut} from "./leanCloud"
+import AV, {getCurrentUser, signOut} from "./leanCloud"
 
 // Component App
 class App extends Component {
@@ -69,40 +69,106 @@ class App extends Component {
         );
     }
 
+    // 初始化保存对象
+    // https://leancloud.cn/docs/leanstorage_guide-js.html#保存对象
+    saveTodo() {
+        // 初始化一个类
+        var AVTodos = AV.Object.extend('Todo');
+        var avTodos = new AVTodos();
+        // 设置读写权限
+        var acl = new AV.ACL();
+        acl.setReadAccess(AV.User.current(), true)
+        acl.setWriteAccess(AV.User.current(), true)
+        // 设置实例存储的数据及权限
+        let dataString = JSON.stringify(this.state.todoList)
+        avTodos.set('content', dataString);
+        avTodos.setACL(acl)
+        // 保存到leanCloud
+        avTodos.save().then((todo) => {
+            let stateCopy = JSON.parse(JSON.stringify(this.state))
+            // 绑定用户数据 id ==> 用户识别码
+            stateCopy.todoList.id = todo.id
+            this.setState(stateCopy)
+            console.log('保存成功');
+        }, function (error) {
+            alert('保存失败')
+        })
+    }
+
+    // 上传更新对象
+    // https://leancloud.cn/docs/leanstorage_guide-js.html#更新对象
+    updateTodo() {
+        let dataString = JSON.stringify(this.state.todoList)
+        let avTodos = AV.Object.createWithoutData('Todo', this.state.todoList.id)
+        avTodos.set('content', dataString)
+        avTodos.save().then(function (e) {
+            console.log(e)
+            console.log('update success')
+        })
+    }
+
+    // 从 leanCloud 下载与用户id识别码对应的数据
+    // reference ==> https://leancloud.cn/docs/leanstorage_guide-js.html#获取对象
+    searchTodo() {
+        if (this.state.user) {
+            var query = new AV.Query('Todo');
+            query.find().then((todos) => {
+                console.log(todos)
+                let avAlltodos = todos[0]
+                let id = avAlltodos.id
+                let stateCopy = JSON.parse(JSON.stringify(this.state))
+                stateCopy.todoList = JSON.parse(avAlltodos.attributes.content)
+                stateCopy.todoList.id = id
+                this.setState(stateCopy)
+            }, function (error) {
+                console.error(error)
+            })
+        }
+    }
+
+    // 同步数据
+    changeTodo() {
+        this.state.todoList.id ? this.updateTodo() : this.saveTodo()
+    }
+
+
     // 登录/注册
     onSignUpOrSignIn(user) {
         let stateCopy = JSON.parse(JSON.stringify(this.state));
         stateCopy.user = user;
         this.setState(stateCopy);
+        this.searchTodo();
     }
 
 
-    // 登出功能
+    // 登出功能 ===> 清除数据
     signOut() {
         let confirmSignOut = window.confirm("确认登出？")
         if (confirmSignOut) {
             signOut()
             let stateCopy = JSON.parse(JSON.stringify(this.state));
             stateCopy.user = {};
+            stateCopy.todoList = [];
             this.setState(stateCopy)
         }
     }
 
     // componentDidUpdate 在组件更新之后调用
     componentDidUpdate() {
-
     }
 
     // 删除一个 TodoItem
     delete(event, todo) {
         todo.deleted = true;
         this.setState(this.state);
+        this.changeTodo();
     }
 
     // 切换 TodoItem 状态
     toggle(e, todo) {
         todo.status = todo.status === 'completed' ? '' : 'completed';
         this.setState(this.state);
+        this.changeTodo();
     }
 
     // 让TotoInput从只读变为可写
@@ -125,6 +191,7 @@ class App extends Component {
             newTodo: '',
             todoList: this.state.todoList
         })
+        this.changeTodo();
     }
 }
 
@@ -137,4 +204,5 @@ function idMaker() {
 
 // 模块出口
 export default App;
+
 
