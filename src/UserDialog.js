@@ -6,7 +6,7 @@ export default class UserDialog extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            selected: "signUp",
+            selected: "signIn",
             formData: {
                 username: '',
                 password: ''
@@ -34,25 +34,40 @@ export default class UserDialog extends Component {
         this.setState(stateCopy);
     }
 
+    // 改变 注册/登录 选中样式
+    changeSign(e) {
+        e.target.parentNode.style.boxShadow = "none";
+        e.target.parentNode.style.background = "RGB(247, 247, 247)";
+        e.target.parentNode.parentNode.childNodes.forEach((lab) => {
+            if (lab.nodeType === 1 && lab !== e.target.parentNode) {
+                lab.style.boxShadow = "inset 0px 0px 1px 0px rgba(0, 0, 0, .2)";
+                lab.style.background = "rgba(222, 222, 222, .6)";
+            }
+        })
+    }
+
+
     render() {
         // {/* 注册 */}
         let signUpForm = (
             <form className="signUp"
                   onSubmit={this.signUp.bind(this)}>
                 <div className="row">
-                    <laberl>用户名</laberl>
+                    <label>用户名</label>
                     <input type="text"
+                           placeholder="username"
                            value={this.state.formData.username}
                            onChange={this.changeFormData.bind(this, "username")}/>
                 </div>
                 <div className="row">
-                    <laberl>密码</laberl>
+                    <label>密码</label>
                     <input type="password"
+                           placeholder="password"
                            value={this.state.formData.password}
                            onChange={this.changeFormData.bind(this, "password")}/>
                 </div>
                 <div className="row action">
-                    <buttom type="submit">注册</buttom>
+                    <button type="submit">注册</button>
                 </div>
             </form>
         )
@@ -63,14 +78,16 @@ export default class UserDialog extends Component {
                 <div className="row">
                     <label htmlFor="">用户名</label>
                     <input type="text"
+                           placeholder="username"
                            value={this.state.formData.username}
-                           onchange={this.changeFormData.bind(this, "username")}/>
+                           onChange={this.changeFormData.bind(this, "username")}/>
                 </div>
                 <div className="row">
                     <label htmlFor="">密码</label>
                     <input type="password"
+                           placeholder="password"
                            value={this.state.formData.password}
-                           onchange={this.changeFormData.bind(this, "password")}/>
+                           onChange={this.changeFormData.bind(this, "password")}/>
                 </div>
                 <div className="row action">
                     <button type="submit">登录</button>
@@ -83,12 +100,20 @@ export default class UserDialog extends Component {
                 <div className="UserDialog">
                     {/* 切换 注册/登录*/}
                     <nav onChange={this.switch.bind(this)}>
-                        <label htmlFor=""><input type="radio"
-                                                 value="signUp"
-                                                 checked={this.state.selected === "signUp"}/>注册</label>
-                        <label htmlFor=""><input type="radio"
-                                                 value="signIn"
-                                                 checked={this.state.selected === "signIn"}/>登录</label>
+                        <label htmlFor="signUp">注册
+                            <input type="radio"
+                                   value="signUp"
+                                   id="signUp"
+                                   checked={this.state.selected === "signUp"}
+                                   onChange={this.changeSign.bind(this)}/>
+                        </label>
+                        <label htmlFor="signIn">登录
+                            <input type="radio"
+                                   value="signIn"
+                                   id="signIn"
+                                   checked={this.state.selected === "signIn"}
+                                   onChange={this.changeSign.bind(this)}/>
+                        </label>
                     </nav>
                     <div className="panes">
                         {this.state.selected === 'signUp' ? signUpForm : null}

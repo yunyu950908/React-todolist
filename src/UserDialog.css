@@ -12,36 +12,86 @@
 }
 
 .UserDialog {
-    border-radius: 4px;
-    min-width: 20em;
+    min-width: 16em;
+    border-radius: 16px;
     background: white;
-    border: 1px solid #aaa;
     box-shadow: 0 0 1em hsla(0, 0%, 0%, 0.35);
+    background: #fff;
 }
 
-.UserDialog > nav:first-child {
-    padding: 1em;
-    margin-left: -2em;
+.UserDialog:before {
+    content: "";
+    display: block;
+    height: 8px;
+    border-radius: 16px 16px 0 0;
+    background: linear-gradient(to right, RGB(195, 226, 121), RGB(247, 254, 200), RGB(255, 208, 105), RGB(242, 118, 105), RGB(220, 156, 190), RGB(197, 154, 224));
 }
 
-.UserDialog > nav:first-child label {
-    margin-left: 2em;
+.UserDialog > nav {
+    height: 2.5em;
+    line-height: 2.5;
+    position: relative;
+}
+
+.UserDialog > nav label {
+    font-size: 1em;
+    font-weight: lighter;
+    color: #aaa;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+    position: absolute;
+    width: 50%;
+    top: 0;
+    bottom: 0;
+    background: RGB(247, 247, 247);
+}
+
+.UserDialog > nav label[for="signUp"] {
+    background: rgba(222, 222, 222, .6);
+    box-shadow: inset 0px 0px 1px 0px rgba(0, 0, 0, .2);
+}
+
+.UserDialog > nav label:nth-child(1) {
+    left: 0
+}
+
+.UserDialog > nav label:nth-child(2) {
+    right: 0;
+}
+
+.UserDialog > nav input {
+    display: none;
+}
+
+.UserDialog > .panes label {
+    display: none;
+}
+
+.UserDialog > .panes input {
+    font-weight: lighter;
+    font-size: 1em;
+    display: block;
+    margin: 1em auto;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #aaa;
+}
+
+.UserDialog > .panes button {
+    font-weight: lighter;
+    font-size: 1em;
+    color: rgb(247, 247, 247);
+    display: block;
+    margin: 1em auto;
+    padding: .4em 1.6em;
+    border-radius: 6px;
+    outline: none;
+    border: none;
+    background: lightcoral;
     cursor: pointer;
 }
 
-.UserDialog > .panes {
-    padding: 0 1em 1em;
-}
-
-.UserDialog form > .row {
-    display: flex;
-    padding: .3em 0;
-}
-
-.UserDialog form > .row > label:first-child {
-    width: 4em;
-}
-
-.UserDialog form > .row.actions {
-    padding-left: 4em;
+.UserDialog > .panes button:hover {
+    background: #f37070;
 }
