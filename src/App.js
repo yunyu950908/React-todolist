@@ -19,10 +19,13 @@ class App extends Component {
             newTodo: '',
             todoList: []
         }
+        // 判断登录状态 ==> 获取数据
+        this.checkLoginStatus();
     }
 
     render() {
         console.log("App render");
+
         // todos 存储 TodoItem
         let todos = this.state.todoList
         // 过滤出还存在的Todo
@@ -69,6 +72,13 @@ class App extends Component {
         );
     }
 
+    // 判断登录状态 ==> 获取数据
+    checkLoginStatus() {
+        if (this.state.user !== {}) {
+            this.searchTodo()
+        }
+    }
+
     // 初始化保存对象
     // https://leancloud.cn/docs/leanstorage_guide-js.html#保存对象
     saveTodo() {
@@ -113,7 +123,7 @@ class App extends Component {
         if (this.state.user) {
             var query = new AV.Query('Todo');
             query.find().then((todos) => {
-                console.log(todos)
+                // console.log(todos)
                 let avAlltodos = todos[0]
                 let id = avAlltodos.id
                 let stateCopy = JSON.parse(JSON.stringify(this.state))
