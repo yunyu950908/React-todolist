@@ -7,6 +7,7 @@ import './App.css';
 import TodoInput from './TodoInput';
 import TodoItem from './TodoItem';
 import UserDialog from './UserDialog';
+import {getCurrentUser} from "./leanCloud"
 
 // Component App
 class App extends Component {
@@ -14,7 +15,7 @@ class App extends Component {
         super(props)
         // 存储数据与状态，载入localStorage
         this.state = {
-            user: {},
+            user: getCurrentUser || {},
             newTodo: '',
             todoList: []
         }
