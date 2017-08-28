@@ -22,7 +22,7 @@ class App extends Component {
     }
 
     render() {
-        console.log(1);
+        console.log("App render");
         // todos 存储 TodoItem
         let todos = this.state.todoList
         // 过滤出还存在的Todo
@@ -59,9 +59,19 @@ class App extends Component {
                 <ol className='todoList'>
                     {todos}
                 </ol>
-                {this.state.user.id ? null : <UserDialog onSignUp={this.onSignUp.bind(this)}/>}
+                {this.state.user.id ?
+                    null :
+                    <UserDialog onSignUp={this.onSignUp.bind(this)}
+                                onSignIn={this.onSignIn.bind(this)}/>}
             </div>
         );
+    }
+
+    // 登录功能
+    onSignIn(user) {
+        let stateCopy = JSON.parse(JSON.stringify(this.state));
+        stateCopy.user = user;
+        this.setState(stateCopy);
     }
 
     // 登出功能
