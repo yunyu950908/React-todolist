@@ -22,6 +22,7 @@ export default class UserDialog extends Component {
         this.setState({
             selected: e.target.value
         })
+        this.changeStyle(e)
     }
 
     // 注册
@@ -49,7 +50,7 @@ export default class UserDialog extends Component {
     }
 
     // 改变 注册/登录 选中样式
-    changeSign(e) {
+    changeStyle(e) {
         e.target.parentNode.style.boxShadow = "none";
         e.target.parentNode.style.background = "RGB(247, 247, 247)";
         e.target.parentNode.parentNode.childNodes.forEach((lab) => {
@@ -59,7 +60,6 @@ export default class UserDialog extends Component {
             }
         })
     }
-
 
     render() {
         // {/* 注册 */}
@@ -113,20 +113,20 @@ export default class UserDialog extends Component {
             <div className="UserDialog-Wrapper">
                 <div className="UserDialog">
                     {/* 切换 注册/登录*/}
-                    <nav onChange={this.switch.bind(this)}>
+                    <nav>
                         <label htmlFor="signUp">注册
                             <input type="radio"
                                    value="signUp"
                                    id="signUp"
                                    checked={this.state.selected === "signUp"}
-                                   onChange={this.changeSign.bind(this)}/>
+                                   onChange={this.switch.bind(this)}/>
                         </label>
                         <label htmlFor="signIn">登录
                             <input type="radio"
                                    value="signIn"
                                    id="signIn"
                                    checked={this.state.selected === "signIn"}
-                                   onChange={this.changeSign.bind(this)}/>
+                                   onChange={this.switch.bind(this)}/>
                         </label>
                     </nav>
                     <div className="panes">
