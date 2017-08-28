@@ -24,10 +24,12 @@ export default class UserDialog extends Component {
         })
     }
 
+    // 注册
     signUp(e) {
         e.preventDefault()
         let {username, password} = this.state.formData
         let success = (user) => {
+            this.props.onSignUp.call(null, user)
             console.log(user)
         }
         let error = (error) => {

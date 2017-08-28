@@ -14,6 +14,7 @@ class App extends Component {
         super(props)
         // 存储数据与状态，载入localStorage
         this.state = {
+            user: {},
             newTodo: '',
             todoList: []
         }
@@ -39,7 +40,7 @@ class App extends Component {
         // 返回最终要渲染到页面的内容
         return (
             <div className="App">
-                <h1>我的代办</h1>
+                <h1>{this.state.user.username || "我"}的待办清单</h1>
                 <div className="inputWrapper">
                     {/*
                      ** content 存储输入的 newTodo
@@ -54,9 +55,15 @@ class App extends Component {
                 <ol className='todoList'>
                     {todos}
                 </ol>
-                <UserDialog/>
+                <UserDialog onSignUp={this.onSignUp.bind(this)}/>
             </div>
         );
+    }
+
+    //注册效果
+    onSignUp(user) {
+        this.state.user = user;
+        this.setState(this.state);
     }
 
     // componentDidUpdate 在组件更新之后调用
