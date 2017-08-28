@@ -15,7 +15,7 @@ class App extends Component {
         super(props)
         // 存储数据与状态，载入localStorage
         this.state = {
-            user: getCurrentUser || {},
+            user: getCurrentUser() || {},
             newTodo: '',
             todoList: []
         }
