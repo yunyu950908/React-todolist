@@ -93,19 +93,19 @@ class App extends Component {
 
     }
 
-    // 删除一个 TodoItem，修改localStorage
+    // 删除一个 TodoItem
     delete(event, todo) {
         todo.deleted = true;
         this.setState(this.state);
     }
 
-    // 切换 TodoItem 状态，修改localStorage
+    // 切换 TodoItem 状态
     toggle(e, todo) {
         todo.status = todo.status === 'completed' ? '' : 'completed';
         this.setState(this.state);
     }
 
-    // 让TotoInput从只读变为可写，修改localStorage
+    // 让TotoInput从只读变为可写
     changeTitle(event) {
         this.setState({
             newTodo: event.target.value,
@@ -113,12 +113,12 @@ class App extends Component {
         })
     }
 
-    // 在TodoList里添加一个Todo，修改localStorage
+    // 在TodoList里添加一个Todo
     addTodo(event) {
         this.state.todoList.push({
             id: idMaker(),
             title: event.target.value,
-            state: null,
+            status: "",
             deleted: false
         })
         this.setState({
