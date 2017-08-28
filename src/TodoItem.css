@@ -7,4 +7,27 @@
 .TodoItem > .title {
     flex-grow: 1;
     padding: 0 .5em;
+    font-family: "Microsoft Yahei", sans-serif;
+    font-weight: lighter;
 }
+
+.TodoItem > button {
+    font-size: 12px;
+    padding: .3em .6em;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    color: rgba(247, 247, 247, .9);
+    background: lightseagreen;
+    cursor: pointer;
+    user-select: none;
+}
+
+.TodoItem > button:hover {
+    color: rgba(247, 247, 247, 1);
+    background: #1ea8a0;
+}
+
+
+
+

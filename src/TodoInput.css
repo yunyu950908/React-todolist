@@ -1,7 +1,21 @@
 .TodoInput {
+    font-size: 16px;
+    font-family: "Microsoft Yahei",sans-serif;
+    color: rgba(0,0,0,.8);
     width: 100%;
     line-height: 1.8;
     margin-bottom: 1em;
-    font-size: 16px;
-    padding: 0 .2em;
+    border: none;
+    outline: 1px solid lightseagreen;
+    padding: .2em;
+}
+
+.TodoInput:focus{
+
+}
+
+.TodoInput::placeholder{
+    text-align: center;
+    font-size: .6em;
+    user-select: none;
 }

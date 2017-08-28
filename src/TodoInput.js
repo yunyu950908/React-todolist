@@ -7,6 +7,7 @@ export default class TodoInput extends Component {
         {/*通知<App/>改value*/}
         return <input type="text"
                       className="TodoInput"
+                      placeholder="在此输出您的待办，按回车键确认"
                       value={this.props.content}
                       onKeyPress={this.submit.bind(this)}
                       onChange={this.changeTitle.bind(this)}/>

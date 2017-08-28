@@ -44,7 +44,7 @@ class App extends Component {
                 <h1>
                     {this.state.user.username || "我"}的待办清单
                     {this.state.user.id ?
-                        <button onClick={this.signOut.bind(this)}>登出</button> :
+                        <button id="signOut" onClick={this.signOut.bind(this)}>登出</button> :
                         null}
                 </h1>
                 <div className="inputWrapper">
@@ -79,10 +79,13 @@ class App extends Component {
 
     // 登出功能
     signOut() {
-        signOut()
-        let stateCopy = JSON.parse(JSON.stringify(this.state));
-        stateCopy.user = {};
-        this.setState(stateCopy)
+        let confirmSignOut = window.confirm("确认登出？")
+        if (confirmSignOut) {
+            signOut()
+            let stateCopy = JSON.parse(JSON.stringify(this.state));
+            stateCopy.user = {};
+            this.setState(stateCopy)
+        }
     }
 
     // componentDidUpdate 在组件更新之后调用
