@@ -5,7 +5,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background: rgba(244,244,244,.6);
+    background: linear-gradient(to top right, rgba(222, 222, 222, 0), rgba(0, 0, 0, .8));
     /* 居中 */
     display: flex;
     justify-content: center;
