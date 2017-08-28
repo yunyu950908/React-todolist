@@ -1,5 +1,8 @@
 import React, {Component} from "react";
+// CSS
 import "./UserDialog.css"
+// leanCloud
+import {signUp} from "./leanCloud"
 
 // Component UserDialog
 export default class UserDialog extends Component {
@@ -22,6 +25,15 @@ export default class UserDialog extends Component {
     }
 
     signUp(e) {
+        e.preventDefault()
+        let {username, password} = this.state.formData
+        let success = (user) => {
+            console.log(user)
+        }
+        let error = (error) => {
+            console.log(error)
+        }
+        signUp(username, password, success, error)
     }
 
     signIn(e) {
