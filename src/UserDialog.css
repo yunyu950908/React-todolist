@@ -84,7 +84,7 @@
     font-size: 1em;
     color: rgb(247, 247, 247);
     display: block;
-    margin: 1em auto;
+    margin: 0 auto;
     padding: .4em 1.6em;
     border-radius: 6px;
     outline: none;
@@ -95,4 +95,23 @@
 
 .UserDialog > .panes button:hover {
     background: #f37070;
+}
+
+.signIn > .action {
+    text-align: center;
+}
+
+.UserDialog > .panes a {
+    font-size: .6em;
+    color: blue;
+    display: inline-block;
+    margin: 1em auto;
+}
+
+.UserDialog > .panes a:active {
+    color: darkred;
+}
+
+.UserDialog > .panes a:visited {
+    color: darkred;
 }
