@@ -11,6 +11,7 @@ export default class UserDialog extends Component {
         this.state = {
             selected: "signIn",
             formData: {
+                email: '',
                 username: '',
                 password: ''
             }
@@ -28,14 +29,17 @@ export default class UserDialog extends Component {
     // 注册
     signUp(e) {
         e.preventDefault()
-        let {username, password} = this.state.formData
+        let {email, username, password} = this.state.formData;
         let success = (user) => {
             this.props.onSignUp.call(null, user)
-            // console.log(user)
+            console.log(user)
         }
         let error = (error) => {
-            // console.log(error.code);
+            console.log(error.code);
             switch (error.code) {
+                case 125:
+                    alert("无效的电子邮箱地址");
+                    break;
                 case 200:
                     alert("用户名不能为空");
                     break;
@@ -57,7 +61,7 @@ export default class UserDialog extends Component {
                     break;
             }
         }
-        signUp(username, password, success, error)
+        signUp(email, username, password, success, error)
     }
 
     // 登录
@@ -126,6 +130,13 @@ export default class UserDialog extends Component {
         let signUpForm = (
             <form className="signUp"
                   onSubmit={this.signUp.bind(this)}>
+                <div className="row">
+                    <label>邮箱</label>
+                    <input type="email"
+                           placeholder="Email Address"
+                           value={this.state.formData.email}
+                           onChange={this.changeFormData.bind(this, "email")}/>
+                </div>
                 <div className="row">
                     <label>用户名</label>
                     <input type="text"

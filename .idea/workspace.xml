@@ -5,11 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="65a90532-7412-488a-aed8-5fad599c7304" name="默认" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TodoInput.css" afterPath="$PROJECT_DIR$/src/TodoInput.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TodoItem.js" afterPath="$PROJECT_DIR$/src/TodoItem.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/UserDialog.css" afterPath="$PROJECT_DIR$/src/UserDialog.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/UserDialog.js" afterPath="$PROJECT_DIR$/src/UserDialog.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/leanCloud.js" afterPath="$PROJECT_DIR$/src/leanCloud.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -25,20 +23,36 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="UserDialog.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="UserDialog.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/UserDialog.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="621">
-              <caret line="167" column="38" lean-forward="false" selection-start-line="167" selection-start-column="38" selection-end-line="167" selection-end-column="38" />
+            <state relative-caret-position="235">
+              <caret line="38" column="33" lean-forward="false" selection-start-line="38" selection-start-column="33" selection-end-line="38" selection-end-column="33" />
               <folding>
-                <element signature="e#229#420#0" expanded="false" />
-                <element signature="e#452#559#0" expanded="false" />
-                <element signature="e#585#1559#0" expanded="false" />
-                <element signature="e#1585#2727#0" expanded="false" />
-                <element signature="e#2994#3434#0" expanded="false" />
-                <element signature="e#4572#4902#0" expanded="false" />
-                <element signature="e#5488#6685#0" expanded="false" />
+                <element signature="e#1714#2856#0" expanded="false" />
+                <element signature="e#3123#3563#0" expanded="false" />
+                <element signature="e#5036#5366#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="App.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/App.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3150">
+              <caret line="147" column="30" lean-forward="true" selection-start-line="147" selection-start-column="30" selection-end-line="147" selection-end-column="30" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="leanCloud.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/leanCloud.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="735">
+              <caret line="34" column="36" lean-forward="false" selection-start-line="34" selection-start-column="19" selection-end-line="34" selection-end-column="36" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -46,18 +60,8 @@
       <file leaf-file-name="UserDialog.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/UserDialog.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="313">
-              <caret line="95" column="9" lean-forward="false" selection-start-line="95" selection-start-column="9" selection-end-line="95" selection-end-column="9" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TodoInput.css" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/TodoInput.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="10" column="2" lean-forward="true" selection-start-line="10" selection-start-column="2" selection-end-line="10" selection-end-column="2" />
+            <state relative-caret-position="292">
+              <caret line="96" column="19" lean-forward="false" selection-start-line="96" selection-start-column="19" selection-end-line="96" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -76,6 +80,7 @@
       <find>searchTodo</find>
       <find>onSubmit</find>
       <find>登录</find>
+      <find>onSignUp</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -92,12 +97,12 @@
         <option value="$PROJECT_DIR$/src/index.css" />
         <option value="$PROJECT_DIR$/src/TodoInput.js" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch.txt" />
-        <option value="$PROJECT_DIR$/src/leanCloud.js" />
         <option value="$PROJECT_DIR$/src/App.js" />
-        <option value="$PROJECT_DIR$/src/TodoItem.js" />
         <option value="$PROJECT_DIR$/src/TodoInput.css" />
-        <option value="$PROJECT_DIR$/src/UserDialog.js" />
+        <option value="$PROJECT_DIR$/src/TodoItem.js" />
+        <option value="$PROJECT_DIR$/src/leanCloud.js" />
         <option value="$PROJECT_DIR$/src/UserDialog.css" />
+        <option value="$PROJECT_DIR$/src/UserDialog.js" />
       </list>
     </option>
   </component>
@@ -287,12 +292,12 @@
       <workItem from="1503842199845" duration="68153000" />
       <workItem from="1504071448151" duration="657000" />
       <workItem from="1504097363508" duration="220000" />
-      <workItem from="1504112128361" duration="2310000" />
+      <workItem from="1504112128361" duration="3995000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="88773000" />
+    <option name="totallyTimeSpent" value="90458000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="953" y="0" width="974" height="1047" extended-state="0" />
@@ -327,7 +332,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="8" />
+      <option name="time" value="9" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -444,30 +449,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/App.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1974">
-          <caret line="126" column="37" lean-forward="false" selection-start-line="126" selection-start-column="37" selection-end-line="126" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/leanCloud.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="509">
-          <caret line="50" column="34" lean-forward="false" selection-start-line="50" selection-start-column="34" selection-end-line="50" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/TodoItem.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="672">
-          <caret line="32" column="9" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="60" selection-end-column="1" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/TodoInput.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="525">
@@ -489,27 +470,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/UserDialog.js">
+    <entry file="file://$PROJECT_DIR$/src/TodoItem.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="621">
-          <caret line="167" column="38" lean-forward="false" selection-start-line="167" selection-start-column="38" selection-end-line="167" selection-end-column="38" />
+        <state relative-caret-position="740">
+          <caret line="59" column="5" lean-forward="true" selection-start-line="59" selection-start-column="5" selection-end-line="59" selection-end-column="5" />
           <folding>
-            <element signature="e#229#420#0" expanded="false" />
-            <element signature="e#452#559#0" expanded="false" />
-            <element signature="e#585#1559#0" expanded="false" />
-            <element signature="e#1585#2727#0" expanded="false" />
-            <element signature="e#2994#3434#0" expanded="false" />
-            <element signature="e#4572#4902#0" expanded="false" />
-            <element signature="e#5488#6685#0" expanded="false" />
+            <element signature="e#0#39#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/UserDialog.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="313">
-          <caret line="95" column="9" lean-forward="false" selection-start-line="95" selection-start-column="9" selection-end-line="95" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -518,6 +485,42 @@
         <state relative-caret-position="210">
           <caret line="10" column="2" lean-forward="true" selection-start-line="10" selection-start-column="2" selection-end-line="10" selection-end-column="2" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UserDialog.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="292">
+          <caret line="96" column="19" lean-forward="false" selection-start-line="96" selection-start-column="19" selection-end-line="96" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3150">
+          <caret line="147" column="30" lean-forward="true" selection-start-line="147" selection-start-column="30" selection-end-line="147" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/leanCloud.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="735">
+          <caret line="34" column="36" lean-forward="false" selection-start-line="34" selection-start-column="19" selection-end-line="34" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UserDialog.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="235">
+          <caret line="38" column="33" lean-forward="false" selection-start-line="38" selection-start-column="33" selection-end-line="38" selection-end-column="33" />
+          <folding>
+            <element signature="e#1714#2856#0" expanded="false" />
+            <element signature="e#3123#3563#0" expanded="false" />
+            <element signature="e#5036#5366#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
