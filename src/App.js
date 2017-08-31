@@ -19,8 +19,18 @@ class App extends Component {
             newTodo: '',
             todoList: []
         }
+        let user = getCurrentUser()
+        if (user) {
+            TodoModel.getByUser(user, (todos) => {
+                console.log(user)
+                console.log(todos)
+                let stateCopy = JSON.parse(JSON.stringify(this.state))
+                stateCopy.todoList = todos;
+                this.setState(stateCopy)
+            })
+        }
         // 判断登录状态 ==> 获取数据
-        this.checkLoginStatus();
+        // this.checkLoginStatus();
     }
 
     render() {
@@ -73,73 +83,73 @@ class App extends Component {
     }
 
     // 判断登录状态 ==> 获取数据
-    checkLoginStatus() {
-        if (this.state.user !== {}) {
-            this.searchTodo()
-        }
-    }
+    // checkLoginStatus() {
+    //     if (this.state.user !== {}) {
+    //         this.searchTodo()
+    //     }
+    // }
 
     // 初始化保存对象
     // https://leancloud.cn/docs/leanstorage_guide-js.html#保存对象
-    saveTodo() {
-        // 初始化一个类
-        var AVTodos = AV.Object.extend('Todo');
-        var avTodos = new AVTodos();
-        // 设置读写权限
-        var acl = new AV.ACL();
-        acl.setReadAccess(AV.User.current(), true)
-        acl.setWriteAccess(AV.User.current(), true)
-        // 设置实例存储的数据及权限
-        let dataString = JSON.stringify(this.state.todoList)
-        avTodos.set('content', dataString);
-        avTodos.setACL(acl)
-        // 保存到leanCloud
-        avTodos.save().then((todo) => {
-            let stateCopy = JSON.parse(JSON.stringify(this.state))
-            // 绑定用户数据 id ==> 用户识别码
-            stateCopy.todoList.id = todo.id
-            this.setState(stateCopy)
-            console.log('保存成功');
-        }, function (error) {
-            alert('保存失败')
-        })
-    }
+    // saveTodo() {
+    //     // 初始化一个类
+    //     var AVTodos = AV.Object.extend('Todo');
+    //     var avTodos = new AVTodos();
+    //     // 设置读写权限
+    //     var acl = new AV.ACL();
+    //     acl.setReadAccess(AV.User.current(), true)
+    //     acl.setWriteAccess(AV.User.current(), true)
+    //     // 设置实例存储的数据及权限
+    //     let dataString = JSON.stringify(this.state.todoList)
+    //     avTodos.set('content', dataString);
+    //     avTodos.setACL(acl)
+    //     // 保存到leanCloud
+    //     avTodos.save().then((todo) => {
+    //         let stateCopy = JSON.parse(JSON.stringify(this.state))
+    //         // 绑定用户数据 id ==> 用户识别码
+    //         stateCopy.todoList.id = todo.id
+    //         this.setState(stateCopy)
+    //         console.log('保存成功');
+    //     }, function (error) {
+    //         alert('保存失败')
+    //     })
+    // }
 
     // 上传更新对象
     // https://leancloud.cn/docs/leanstorage_guide-js.html#更新对象
-    updateTodo() {
-        let dataString = JSON.stringify(this.state.todoList)
-        let avTodos = AV.Object.createWithoutData('Todo', this.state.todoList.id)
-        avTodos.set('content', dataString)
-        avTodos.save().then(function (e) {
-            console.log(e)
-            console.log('update success')
-        })
-    }
+    // updateTodo() {
+    //     let dataString = JSON.stringify(this.state.todoList)
+    //     let avTodos = AV.Object.createWithoutData('Todo', this.state.todoList.id)
+    //     avTodos.set('content', dataString)
+    //     avTodos.save().then(function (e) {
+    //         console.log(e)
+    //         console.log('update success')
+    //     })
+    // }
 
     // 从 leanCloud 下载与用户id识别码对应的数据
     // reference ==> https://leancloud.cn/docs/leanstorage_guide-js.html#获取对象
-    searchTodo() {
-        if (this.state.user) {
-            var query = new AV.Query('Todo');
-            query.find().then((todos) => {
-                // console.log(todos)
-                let avAlltodos = todos[0]
-                let id = avAlltodos.id
-                let stateCopy = JSON.parse(JSON.stringify(this.state))
-                stateCopy.todoList = JSON.parse(avAlltodos.attributes.content)
-                stateCopy.todoList.id = id
-                this.setState(stateCopy)
-            }, function (error) {
-                console.error(error)
-            })
-        }
-    }
+    // searchTodo() {
+    //     if (this.state.user) {
+    //         var query = new AV.Query('Todo');
+    //         query.find().then((todos) => {
+    //             // console.log(todos)
+    //             let avAlltodos = todos[0]
+    //             let id = avAlltodos.id
+    //             let stateCopy = JSON.parse(JSON.stringify(this.state))
+    //             stateCopy.todoList = JSON.parse(avAlltodos.attributes.content)
+    //             stateCopy.todoList.id = id
+    //             this.setState(stateCopy)
+    //         }, function (error) {
+    //             console.error(error)
+    //         })
+    //     }
+    // }
 
     // 同步数据
-    changeTodo() {
-        this.state.todoList.id ? this.updateTodo() : this.saveTodo()
-    }
+    // changeTodo() {
+    //     this.state.todoList.id ? this.updateTodo() : this.saveTodo()
+    // }
 
 
     // 登录/注册
@@ -171,14 +181,14 @@ class App extends Component {
     delete(event, todo) {
         todo.deleted = true;
         this.setState(this.state);
-        this.changeTodo();
+        // this.changeTodo();
     }
 
     // 切换 TodoItem 状态
     toggle(e, todo) {
         todo.status = todo.status === 'completed' ? '' : 'completed';
         this.setState(this.state);
-        this.changeTodo();
+        // this.changeTodo();
     }
 
     // 让TotoInput从只读变为可写
@@ -192,13 +202,14 @@ class App extends Component {
     // 在TodoList里添加一个Todo
     addTodo(event) {
         let newTodo = {
-            title: event.target.value,
             status: "",
+            title: event.target.value,
             deleted: false
 
         }
         TodoModel.create(newTodo, (id) => {
             newTodo.id = id;
+            console.log(newTodo)
             this.state.todoList.push(newTodo);
             this.setState({
                 newTodo: "",
@@ -207,7 +218,7 @@ class App extends Component {
         }, (error) => {
             console.log(error)
         })
-        this.changeTodo();
+        // this.changeTodo();
     }
 }
 
