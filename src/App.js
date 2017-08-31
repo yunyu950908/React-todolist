@@ -187,9 +187,14 @@ class App extends Component {
 
     // 切换 TodoItem 状态
     toggle(e, todo) {
+        let oldStatus = todo.status;
         todo.status = todo.status === 'completed' ? '' : 'completed';
-        this.setState(this.state);
-        // this.changeTodo();
+        TodoModel.update(todo, () => {
+            this.setState(this.state)
+        }, (error) => {
+            todo.status = oldStatus;
+            this.setState(this.state)
+        })
     }
 
     // 让TotoInput从只读变为可写
