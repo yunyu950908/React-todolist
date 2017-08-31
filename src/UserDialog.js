@@ -7,6 +7,8 @@ import {signUp, signIn, sendPasswordResetEmail} from "./leanCloud";
 import SignUpForm from "./SignUpForm";
 // 登录组件
 import SignInForm from "./SignInForm";
+// 重置密码
+import ForgetPasswordForm from "./ForgetPasswordForm";
 
 
 // Component UserDialog
@@ -152,11 +154,13 @@ export default class UserDialog extends Component {
                     </label>
                 </nav>
                 <div className="panes">
+                    {/*注册*/}
                     {this.state.selected === "signUp" ?
                         <SignUpForm formData={this.state.formData}
                                     onSubmit={this.signUp.bind(this)}
                                     onChange={this.changeFormData.bind(this)}/>
                         : null}
+                    {/*登录*/}
                     {this.state.selected === "signIn" ?
                         <SignInForm formData={this.state.formData}
                                     onSubmit={this.signIn.bind(this)}
@@ -167,32 +171,16 @@ export default class UserDialog extends Component {
             </div>
         );
 
-        let forgetPassword = (
-            <div className="forgetPassword">
-                <h3>重置密码</h3>
-                <form action=""
-                      className="forgetPassword"
-                      onSubmit={this.resetPassword.bind(this)}>
-                    <div className="row">
-                        <label htmlFor="">邮箱</label>
-                        <input type="email"
-                               placeholder="Email Address"
-                               value={this.state.formData.email}
-                               onChange={this.changeFormData.bind(this, "email")}/>
-                    </div>
-                    <div className="row action">
-                        <button type="submit">发送重置邮件</button>
-                        <a href="javascript:;" onClick={this.returnToSignIn.bind(this)}>返回登录</a>
-                    </div>
-                </form>
-            </div>
-        );
 
         return (
             <div className="UserDialog-Wrapper">
                 <div className="UserDialog">
-                    {/* 切换 注册/登录*/}
-                    {this.state.selectedTab === "signInOrSignUp" ? signInOrSignUp : forgetPassword}
+                    {/* 切换 注册/登录 忘记密码*/}
+                    {this.state.selectedTab === "signInOrSignUp" ? signInOrSignUp :
+                        <ForgetPasswordForm formData={this.state.formData}
+                                            onSubmit={this.resetPassword.bind(this)}
+                                            onChange={this.changeFormData.bind(this)}
+                                            onSignIn={this.returnToSignIn.bind(this)}/>}
                 </div>
             </div>
         )
