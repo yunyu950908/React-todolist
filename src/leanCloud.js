@@ -33,7 +33,6 @@ export function signUp(email, username, password, successFn, errorFn) {
 export function signIn(username, password, successFn, errorFn) {
     AV.User.logIn(username, password).then(function (loginedUser) {
         let user = getUserFromAVUser(loginedUser);
-        console.log(user)
         successFn.call(null, user);
     }, function (error) {
         errorFn.call(null, error);
@@ -78,7 +77,6 @@ export const TodoModel = {
     getByUser(user, successFn, errorFn){
         let query = new AV.Query("Todo")
         query.find().then((response) => {
-            console.log(response)
             let array = response.map((todo) => {
                 return {
                     id: todo.id,
