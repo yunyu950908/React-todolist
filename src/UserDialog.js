@@ -1,8 +1,11 @@
 import React, {Component} from "react";
 // CSS
-import "./UserDialog.css"
+import "./UserDialog.css";
 // leanCloud
-import {signUp, signIn, sendPasswordResetEmail} from "./leanCloud"
+import {signUp, signIn, sendPasswordResetEmail} from "./leanCloud";
+// 注册组件
+import SignUpForm from "./SignUpForm";
+
 
 // Component UserDialog
 export default class UserDialog extends Component {
@@ -127,36 +130,7 @@ export default class UserDialog extends Component {
     }
 
     render() {
-        // {/* 注册 */}
-        let signUpForm = (
-            <form className="signUp"
-                  onSubmit={this.signUp.bind(this)}>
-                <div className="row">
-                    <label>邮箱</label>
-                    <input type="email"
-                           placeholder="Email Address"
-                           value={this.state.formData.email}
-                           onChange={this.changeFormData.bind(this, "email")}/>
-                </div>
-                <div className="row">
-                    <label>用户名</label>
-                    <input type="text"
-                           placeholder="username"
-                           value={this.state.formData.username}
-                           onChange={this.changeFormData.bind(this, "username")}/>
-                </div>
-                <div className="row">
-                    <label>密码</label>
-                    <input type="password"
-                           placeholder="password"
-                           value={this.state.formData.password}
-                           onChange={this.changeFormData.bind(this, "password")}/>
-                </div>
-                <div className="row action">
-                    <button type="submit">注册</button>
-                </div>
-            </form>
-        );
+
         // {/* 登录 */}
         let signInForm = (
             <form className="signIn"
@@ -201,7 +175,11 @@ export default class UserDialog extends Component {
                     </label>
                 </nav>
                 <div className="panes">
-                    {this.state.selected === "signUp" ? signUpForm : null}
+                    {this.state.selected === "signUp" ?
+                        <SignUpForm formData={this.state.formData}
+                                    onSubmit={this.signUp.bind(this)}
+                                    onChange={this.changeFormData.bind(this)}/>
+                        : null}
                     {this.state.selected === "signIn" ? signInForm : null}
                 </div>
             </div>
