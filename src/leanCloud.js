@@ -77,6 +77,7 @@ export const TodoModel = {
     getByUser(user, successFn, errorFn){
         let query = new AV.Query("Todo")
         query.find().then((response) => {
+            console.log(response)
             let array = response.map((todo) => {
                 return {
                     id: todo.id,
@@ -94,6 +95,14 @@ export const TodoModel = {
         todo.set("title", title)
         todo.set("status", status)
         todo.set("deleted", deleted)
+
+        // 控制访问权限
+        let acl = new AV.ACL()
+        acl.setReadAccess(AV.User.current(), true)
+        acl.setWriteAccess(AV.User.current(), true)
+        todo.setACL(acl)
+        //
+
         todo.save().then(function (response) {
             successFn.call(null, response.id)
         }, function (error) {
