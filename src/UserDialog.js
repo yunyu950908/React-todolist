@@ -5,6 +5,8 @@ import "./UserDialog.css";
 import {signUp, signIn, sendPasswordResetEmail} from "./leanCloud";
 // 注册组件
 import SignUpForm from "./SignUpForm";
+// 登录组件
+import SignInForm from "./SignInForm";
 
 
 // Component UserDialog
@@ -131,31 +133,6 @@ export default class UserDialog extends Component {
 
     render() {
 
-        // {/* 登录 */}
-        let signInForm = (
-            <form className="signIn"
-                  onSubmit={this.signIn.bind(this)}>
-                <div className="row">
-                    <label htmlFor="">用户名</label>
-                    <input type="text"
-                           placeholder="username"
-                           value={this.state.formData.username}
-                           onChange={this.changeFormData.bind(this, "username")}/>
-                </div>
-                <div className="row">
-                    <label htmlFor="">密码</label>
-                    <input type="password"
-                           placeholder="password"
-                           value={this.state.formData.password}
-                           onChange={this.changeFormData.bind(this, "password")}/>
-                </div>
-                <div className="row action">
-                    <button type="submit">登录</button>
-                    <a href="javascript:" onClick={this.showForgetPassword.bind(this)}>忘记密码？</a>
-                </div>
-            </form>
-        );
-
         let signInOrSignUp = (
             <div className="signInOrSignUp">
                 <nav>
@@ -180,7 +157,12 @@ export default class UserDialog extends Component {
                                     onSubmit={this.signUp.bind(this)}
                                     onChange={this.changeFormData.bind(this)}/>
                         : null}
-                    {this.state.selected === "signIn" ? signInForm : null}
+                    {this.state.selected === "signIn" ?
+                        <SignInForm formData={this.state.formData}
+                                    onSubmit={this.signIn.bind(this)}
+                                    onChange={this.changeFormData.bind(this)}
+                                    onForgetPassword={this.showForgetPassword.bind(this)}/>
+                        : null}
                 </div>
             </div>
         );
