@@ -8,12 +8,14 @@ export default class SignInForm extends Component {
                 <div className="row">
                     <label htmlFor="">用户名</label>
                     <input type="text"
+                           placeholder="username"
                            value={this.props.formData.username}
                            onChange={this.props.onChange.bind(null, "username")}/>
                 </div>
                 <div className="row">
                     <label htmlFor="">密码</label>
                     <input type="password"
+                           placeholder="password"
                            value={this.props.formData.password}
                            onChange={this.props.onChange.bind(null, "password")}/>
                 </div>
