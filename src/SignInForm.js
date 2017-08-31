@@ -18,7 +18,7 @@ export default class SignInForm extends Component {
                            onChange={this.props.onChange.bind(null, "password")}/>
                 </div>
                 <div className="row action">
-                    <button type="submit">用户名</button>
+                    <button type="submit">登录</button>
                     <a href="javascript:;" onClick={this.props.onForgetPassword}>忘记密码？</a>
                 </div>
             </form>
