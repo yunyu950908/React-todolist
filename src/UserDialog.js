@@ -10,6 +10,7 @@ export default class UserDialog extends Component {
         super(props);
         this.state = {
             selected: "signIn",
+            selectedTab: "signInOrSignUp",
             formData: {
                 email: '',
                 username: '',
@@ -22,18 +23,18 @@ export default class UserDialog extends Component {
     switch(e) {
         this.setState({
             selected: e.target.value
-        })
+        });
         this.changeStyle(e)
     }
 
     // 注册
     signUp(e) {
-        e.preventDefault()
+        e.preventDefault();
         let {email, username, password} = this.state.formData;
         let success = (user) => {
-            this.props.onSignUp.call(null, user)
+            this.props.onSignUp.call(null, user);
             console.log(user)
-        }
+        };
         let error = (error) => {
             console.log(error.code);
             switch (error.code) {
@@ -60,7 +61,7 @@ export default class UserDialog extends Component {
                     alert("未知错误");
                     break;
             }
-        }
+        };
         signUp(email, username, password, success, error)
     }
 
@@ -70,7 +71,7 @@ export default class UserDialog extends Component {
         let {username, password} = this.state.formData;
         let success = (user) => {
             this.props.onSignIn.call(null, user)
-        }
+        };
         let error = (error) => {
             // console.log(error.code);
             switch (error.code) {
@@ -102,7 +103,7 @@ export default class UserDialog extends Component {
                     break;
             }
 
-        }
+        };
         signIn(username, password, success, error)
     }
 
@@ -155,7 +156,7 @@ export default class UserDialog extends Component {
                     <button type="submit">注册</button>
                 </div>
             </form>
-        )
+        );
         // {/* 登录 */}
         let signInForm = (
             <form className="signIn"
@@ -176,37 +177,72 @@ export default class UserDialog extends Component {
                 </div>
                 <div className="row action">
                     <button type="submit">登录</button>
-                    <a href="javascript:;">忘记密码？</a>
+                    <a href="javascript:" onClick={this.showForgetPassword.bind(this)}>忘记密码？</a>
                 </div>
             </form>
-        )
+        );
+
+        let signInOrSignUp = (
+            <div className="signInOrSignUp">
+                <nav>
+                    <label htmlFor="signUp">注册
+                        <input type="radio"
+                               value="signUp"
+                               id="signUp"
+                               checked={this.state.selected === "signUp"}
+                               onChange={this.switch.bind(this)}/>
+                    </label>
+                    <label htmlFor="signIn">登录
+                        <input type="radio"
+                               value="signIn"
+                               id="signIn"
+                               checked={this.state.selected === "signIn"}
+                               onChange={this.switch.bind(this)}/>
+                    </label>
+                </nav>
+                <div className="panes">
+                    {this.state.selected === "signUp" ? signUpForm : null}
+                    {this.state.selected === "signIn" ? signInForm : null}
+                </div>
+            </div>
+        );
+
+        let forgetPassword = (
+            <div className="forgetPassword">
+                <h3>重置密码</h3>
+                <form action=""
+                      className="forgetPassword"
+                      onSubmit={this.resetPassword.bind(this)}>
+                    <div className="row">
+                        <label htmlFor="">邮箱</label>
+                        <input type="email"
+                               placeholder="Email Address"
+                               value={this.state.formData.email}
+                               onChange={this.changeFormData.bind(this, "email")}/>
+                    </div>
+                    <div className="row action">
+                        <button type="submit">发送重置邮件</button>
+                    </div>
+                </form>
+            </div>
+        );
 
         return (
             <div className="UserDialog-Wrapper">
                 <div className="UserDialog">
                     {/* 切换 注册/登录*/}
-                    <nav>
-                        <label htmlFor="signUp">注册
-                            <input type="radio"
-                                   value="signUp"
-                                   id="signUp"
-                                   checked={this.state.selected === "signUp"}
-                                   onChange={this.switch.bind(this)}/>
-                        </label>
-                        <label htmlFor="signIn">登录
-                            <input type="radio"
-                                   value="signIn"
-                                   id="signIn"
-                                   checked={this.state.selected === "signIn"}
-                                   onChange={this.switch.bind(this)}/>
-                        </label>
-                    </nav>
-                    <div className="panes">
-                        {this.state.selected === 'signUp' ? signUpForm : null}
-                        {this.state.selected === 'signIn' ? signInForm : null}
-                    </div>
+                    {this.state.selectedTab === "signInOrSignUp" ? signInOrSignUp : forgetPassword}
                 </div>
             </div>
         )
+    }
+
+    showForgetPassword() {
+        let stateCopy = JSON.parse(JSON.stringify(this.state));
+        stateCopy.selectedTab = "forgetPassword";
+        this.setState(stateCopy);
+    }
+
+    resetPassword() {
     }
 }

@@ -14,7 +14,7 @@
 
 .UserDialog {
     min-width: 16em;
-    border-radius: 16px;
+    border-radius: 10px;
     background: white;
     box-shadow: 0 0 1em hsla(0, 0%, 0%, 0.35);
     background: #fff;
@@ -29,48 +29,58 @@
     background: linear-gradient(to right, RGB(195, 226, 121), RGB(247, 254, 200), RGB(255, 208, 105), RGB(242, 118, 105), RGB(220, 156, 190), RGB(197, 154, 224));
 }
 
-.UserDialog > nav {
+/* 注册 登录 */
+.signInOrSignUp > nav {
     height: 2.5em;
     line-height: 2.5;
     position: relative;
 }
 
-.UserDialog > nav label {
-    font-size: 1em;
-    font-weight: lighter;
-    color: #aaa;
-    text-align: center;
-    cursor: pointer;
+.signInOrSignUp > nav label {
     user-select: none;
     position: absolute;
     width: 50%;
     top: 0;
     bottom: 0;
-    background: RGB(247, 247, 247);
 }
 
-.UserDialog > nav label[for="signUp"] {
+/* 所有标题公共样式 */
+.signInOrSignUp > nav label, .forgetPassword h3 {
+    font-size: 1em;
+    font-weight: lighter;
+    color: #aaa;
+    text-align: center;
+    cursor: pointer;
+    background: RGB(247, 247, 247);
+    height: 2.5em;
+    line-height: 2.5;
+}
+
+/* 标题公共样式结束 */
+
+.signInOrSignUp > nav label[for="signUp"] {
     background: rgba(222, 222, 222, .6);
     box-shadow: inset 0px 0px 1px 0px rgba(0, 0, 0, .2);
 }
 
-.UserDialog > nav label:nth-child(1) {
+.signInOrSignUp > nav label:nth-child(1) {
     left: 0
 }
 
-.UserDialog > nav label:nth-child(2) {
+.signInOrSignUp > nav label:nth-child(2) {
     right: 0;
 }
 
-.UserDialog > nav input {
+.signInOrSignUp > nav input {
     display: none;
 }
 
-.UserDialog > .panes label {
+/* 所有输入框 */
+.signInOrSignUp > .panes label, .forgetPassword label {
     display: none;
 }
 
-.UserDialog > .panes input {
+.signInOrSignUp > .panes input, .forgetPassword input {
     font-weight: lighter;
     font-size: 1em;
     display: block;
@@ -80,7 +90,10 @@
     border-bottom: 1px solid #aaa;
 }
 
-.UserDialog > .panes button {
+/* 输入框结束 */
+
+/* 所有按钮 */
+.UserDialog button {
     font-weight: lighter;
     font-size: 1em;
     color: rgb(247, 247, 247);
@@ -94,25 +107,33 @@
     cursor: pointer;
 }
 
-.UserDialog > .panes button:hover {
+.UserDialog button:hover {
     background: #f37070;
 }
+
+/* 按钮结束 */
 
 .signIn > .action {
     text-align: center;
 }
 
-.UserDialog > .panes a {
+.signInOrSignUp > .panes a {
     font-size: .6em;
     color: blue;
     display: inline-block;
     margin: 1em auto 0;
 }
 
-.UserDialog > .panes a:active {
+.signInOrSignUp > .panes a:active {
     color: darkred;
 }
 
-.UserDialog > .panes a:visited {
+.signInOrSignUp > .panes a:visited {
     color: darkred;
 }
+
+/* 重置密码 */
+
+
+
+
