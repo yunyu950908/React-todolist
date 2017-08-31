@@ -113,22 +113,23 @@
 
 /* 按钮结束 */
 
-.signIn > .action {
+/* UserDialog中所有a标签 */
+.UserDialog .action {
     text-align: center;
 }
 
-.signInOrSignUp > .panes a {
+.UserDialog a {
     font-size: .6em;
     color: blue;
     display: inline-block;
     margin: 1em auto 0;
 }
 
-.signInOrSignUp > .panes a:active {
+.UserDialog a:active {
     color: darkred;
 }
 
-.signInOrSignUp > .panes a:visited {
+.UserDialog a:visited {
     color: darkred;
 }
 

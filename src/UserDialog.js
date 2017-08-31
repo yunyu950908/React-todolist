@@ -222,6 +222,7 @@ export default class UserDialog extends Component {
                     </div>
                     <div className="row action">
                         <button type="submit">发送重置邮件</button>
+                        <a href="javascript:;" onClick={this.returnToSignIn.bind(this)}>返回登录</a>
                     </div>
                 </form>
             </div>
@@ -237,6 +238,7 @@ export default class UserDialog extends Component {
         )
     }
 
+    // 忘记密码
     showForgetPassword() {
         let stateCopy = JSON.parse(JSON.stringify(this.state));
         stateCopy.selectedTab = "forgetPassword";
@@ -247,5 +249,12 @@ export default class UserDialog extends Component {
         e.preventDefault();
         sendPasswordResetEmail(this.state.formData.email);
         alert("邮件已发送，请检查你的收件箱！")
+    }
+
+    // 返回登录
+    returnToSignIn() {
+        let stateCopy = JSON.parse(JSON.stringify(this.state));
+        stateCopy.selectedTab = "signInOrSignUp";
+        this.setState(stateCopy);
     }
 }
