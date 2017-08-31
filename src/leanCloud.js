@@ -7,17 +7,7 @@ AV.init({
     appId: APP_ID,
     appKey: APP_KEY
 });
-// leancloud ping
-/*
- var TestObject = AV.Object.extend('TestObject')
- var testObject = new TestObject()
- testObject.save({
- words: 'Hello World!'
- }).then(function (object) {
- console.log(object)
- alert('LeanCloud Rocks!')
- })
- */
+
 
 export default AV
 
@@ -83,8 +73,24 @@ export function sendPasswordResetEmail(email, successFn, errorFn) {
 }
 
 
-
-
+export const TodoModel = {
+    create({status, title, deleted}, successFn, errorFn){
+        let Todo = AV.Object.extend("Todo")
+        let todo = new Todo()
+        todo.set("title", title)
+        todo.set("status", status)
+        todo.set("deleted", deleted)
+        todo.save().then(function (response) {
+            successFn.call(null, response.id)
+        }, function (error) {
+            errorFn && errorFn.call(null, error)
+        });
+    },
+    update(){
+    },
+    destroy(){
+    }
+}
 
 
 

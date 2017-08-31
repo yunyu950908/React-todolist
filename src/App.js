@@ -7,7 +7,7 @@ import './App.css';
 import TodoInput from './TodoInput';
 import TodoItem from './TodoItem';
 import UserDialog from './UserDialog';
-import AV, {getCurrentUser, signOut} from "./leanCloud"
+import AV, {getCurrentUser, signOut, TodoModel} from "./leanCloud"
 
 // Component App
 class App extends Component {
@@ -191,25 +191,24 @@ class App extends Component {
 
     // 在TodoList里添加一个Todo
     addTodo(event) {
-        this.state.todoList.push({
-            id: idMaker(),
+        let newTodo = {
             title: event.target.value,
             status: "",
             deleted: false
-        })
-        this.setState({
-            newTodo: '',
-            todoList: this.state.todoList
+
+        }
+        TodoModel.create(newTodo, (id) => {
+            newTodo.id = id;
+            this.state.todoList.push(newTodo);
+            this.setState({
+                newTodo: "",
+                todoList: this.state.todoList
+            })
+        }, (error) => {
+            console.log(error)
         })
         this.changeTodo();
     }
-}
-
-// 创建 ID
-let id = 0;
-function idMaker() {
-    id += 1;
-    return id;
 }
 
 // 模块出口
