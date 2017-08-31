@@ -2,7 +2,7 @@ import React, {Component} from "react";
 // CSS
 import "./UserDialog.css"
 // leanCloud
-import {signUp, signIn} from "./leanCloud"
+import {signUp, signIn, sendPasswordResetEmail} from "./leanCloud"
 
 // Component UserDialog
 export default class UserDialog extends Component {
@@ -243,6 +243,9 @@ export default class UserDialog extends Component {
         this.setState(stateCopy);
     }
 
-    resetPassword() {
+    resetPassword(e) {
+        e.preventDefault();
+        sendPasswordResetEmail(this.state.formData.email);
+        alert("邮件已发送，请检查你的收件箱！")
     }
 }

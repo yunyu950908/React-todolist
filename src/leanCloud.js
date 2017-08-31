@@ -71,3 +71,26 @@ function getUserFromAVUser(AVUser) {
         ...AVUser.attributes
     }
 }
+
+// 发送重置邮件
+
+export function sendPasswordResetEmail(email, successFn, errorFn) {
+    AV.User.requestPasswordReset(email).then(function (success) {
+        successFn.call()
+    }, function (error) {
+        console.dir(error)
+    })
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
