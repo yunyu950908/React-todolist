@@ -1,27 +1,27 @@
-import React, {Component} from 'react';
+import React from 'react';
 import './TodoInput.css';
 
 // Component TodoInput
-export default class TodoInput extends Component {
-    render() {
-        {/*通知<App/>改value*/}
-        return <input type="text"
-                      className="TodoInput"
-                      placeholder="在此输出您的待办，按回车键确认"
-                      value={this.props.content}
-                      onKeyPress={this.submit.bind(this)}
-                      onChange={this.changeTitle.bind(this)}/>
-    }
+export default function (props) {
+    //通知<App/>改value
+    return (
+        <input type="text"
+               className="TodoInput"
+               placeholder="在此输出您的待办，按回车键确认"
+               value={props.content}
+               onKeyPress={submit.bind(null, props)}
+               onChange={changeTitle.bind(null, props)}/>
+    )
+}
 
-    // [回车] 事件，通知 <App/> 改 todoList
-    submit(e) {
-        if (e.key === 'Enter') {
-            this.props.onSubmit(e)
-        }
+// [回车] 事件，通知 <App/> 改 todoList
+function submit(props, e) {
+    if (e.key === 'Enter') {
+        props.onSubmit(e)
     }
+}
 
-    // 通知 <App/> 可写 input
-    changeTitle(e) {
-        this.props.onChange(e)
-    }
+// 通知 <App/> 可写 input
+function changeTitle(props, e) {
+    props.onChange(e)
 }
