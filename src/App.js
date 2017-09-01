@@ -88,6 +88,7 @@ class App extends Component {
     onSignUpOrSignIn(user) {
         let stateCopy = JSON.parse(JSON.stringify(this.state));
         stateCopy.user = user;
+        this.setState(stateCopy);
         // 进来后第一时间获取数据
         this.getUserInfo();
     }
@@ -96,10 +97,11 @@ class App extends Component {
     signOut() {
         let confirmSignOut = window.confirm("确认登出？")
         if (confirmSignOut) {
-            signOut()
+            signOut();
             let stateCopy = JSON.parse(JSON.stringify(this.state));
             stateCopy.user = {};
             stateCopy.todoList = [];
+            this.setState(stateCopy);
         }
     }
 
