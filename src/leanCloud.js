@@ -70,7 +70,31 @@ export function sendPasswordResetEmail(email, successFn, errorFn) {
     })
 }
 
+// 操作todo
+export const TodoModel = {
+    // 创建todo
+    create({status, title, deleted}, successFn, errorFn){
+        // 创建todo 对象
+        let Todo = AV.Object.extend("Todo");
+        let Todo = new Todo();
+        todo.set("title", title);
+        todo.set("status", status);
+        todo.set("deleted", deleted)
 
+        // 控制读写权限
+        let acl = new AV.ACL();
+        acl.setReadAccess(AV.User.current(), true);
+        acl.setWriteAccess(AV.User.current(), true)
+        todo.setACL(acl)
+
+        // 保存todo 对象
+        todo.save().then((response) => {
+            successFn.call(null, response.id)
+        }, (error) => {
+            errorFn && errorFn.call(null, error)
+        })
+    }
+};
 
 
 
