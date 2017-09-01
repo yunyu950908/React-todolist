@@ -14,7 +14,7 @@ export default class SignInOrSignUp extends Component {
 
     // 切换 注册/登录
     switch(e) {
-        console.log(e.target.value)
+        // console.log(e.target.value)
         this.setState({
             selected: e.target.value
         });
