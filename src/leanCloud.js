@@ -7,17 +7,6 @@ AV.init({
     appId: APP_ID,
     appKey: APP_KEY
 });
-// leancloud ping
-/*
- var TestObject = AV.Object.extend('TestObject')
- var testObject = new TestObject()
- testObject.save({
- words: 'Hello World!'
- }).then(function (object) {
- console.log(object)
- alert('LeanCloud Rocks!')
- })
- */
 
 export default AV
 
@@ -73,7 +62,6 @@ function getUserFromAVUser(AVUser) {
 }
 
 // 发送重置邮件
-
 export function sendPasswordResetEmail(email, successFn, errorFn) {
     AV.User.requestPasswordReset(email).then(function (success) {
         successFn.call()
