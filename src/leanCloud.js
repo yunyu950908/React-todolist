@@ -76,7 +76,7 @@ export const TodoModel = {
     create({status, title, deleted}, successFn, errorFn){
         // 创建todo 对象
         let Todo = AV.Object.extend("Todo");
-        let Todo = new Todo();
+        let todo = new Todo();
         todo.set("title", title);
         todo.set("status", status);
         todo.set("deleted", deleted)
@@ -89,8 +89,10 @@ export const TodoModel = {
 
         // 保存todo 对象
         todo.save().then((response) => {
+            // 保存成功回调参数 response.id
             successFn.call(null, response.id)
         }, (error) => {
+            // 保存失败回调参数 error
             errorFn && errorFn.call(null, error)
         })
     }

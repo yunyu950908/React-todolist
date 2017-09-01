@@ -121,6 +121,7 @@ class App extends Component {
             deleted: false
         };
         TodoModel.create(newTodo, (id) => {
+            // leanCloud.js ==> successFn(response.id)
             newTodo.id = id;
             this.state.todoList.push(newTodo);
             this.setState({
@@ -128,6 +129,7 @@ class App extends Component {
                 todoList: this.state.todoList
             })
         }, (error) => {
+            // leanCloud.js ==> errorFn(error)
             console.log(error)
         })
     }
