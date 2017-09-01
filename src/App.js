@@ -12,14 +12,15 @@ import AV, {getCurrentUser, signOut, TodoModel} from "./leanCloud";
 // Component App
 class App extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         // 存储数据与状态，载入localStorage
         this.state = {
             user: getCurrentUser() || {},
             newTodo: '',
             todoList: []
-        }
-        // 判断登录状态 ==> 获取数据
+        };
+        // 刷新判断登录状态 ==> 获取数据
+        this.getUserInfo();
     }
 
     render() {
@@ -71,12 +72,25 @@ class App extends Component {
         );
     }
 
+    //getUserInfo 查询
+    getUserInfo() {
+        let user = getCurrentUser();
+        if (user) {
+            TodoModel.getByUser(user, (todos) => {
+                let stateCopy = JSON.parse(JSON.stringify(this.state));
+                stateCopy.todoList = todos;
+                this.setState(stateCopy)
+            })
+        }
+    }
+
     // 登录/注册
     onSignUpOrSignIn(user) {
         let stateCopy = JSON.parse(JSON.stringify(this.state));
         stateCopy.user = user;
+        // 进来后第一时间获取数据
+        this.getUserInfo();
     }
-
 
     // 登出功能 ===> 清除数据
     signOut() {
@@ -131,7 +145,8 @@ class App extends Component {
         }, (error) => {
             // leanCloud.js ==> errorFn(error)
             console.log(error)
-        })
+        });
+        // console.log(this.state.todoList)
     }
 }
 

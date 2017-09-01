@@ -72,7 +72,7 @@ export function sendPasswordResetEmail(email, successFn, errorFn) {
 
 // 操作todo
 export const TodoModel = {
-    // 创建todo
+    // 创建对象
     create({status, title, deleted}, successFn, errorFn){
         // 创建todo 对象
         let Todo = AV.Object.extend("Todo");
@@ -95,7 +95,23 @@ export const TodoModel = {
             // 保存失败回调参数 error
             errorFn && errorFn.call(null, error)
         })
+    },
+    // 获取对象
+    getByUser(user, successFn, errorFn){
+        let query = new AV.Query("Todo");
+        query.find().then((response) => {
+            let array = response.map((todo) => {
+                return {
+                    id: todo.id,
+                    ...todo.attributes
+                }
+            });
+            successFn.call(null, array)
+        }, (error) => {
+            errorFn && errorFn.call(null, error)
+        })
     }
+
 };
 
 
