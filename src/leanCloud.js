@@ -110,6 +110,15 @@ export const TodoModel = {
         }, (error) => {
             errorFn && errorFn.call(null, error)
         })
+    },
+    // 删除对象
+    destroy(todoId, successFn, errorFn){
+        let todo = AV.Object.createWithoutData("Todo", todoId);
+        todo.destroy().then((response) => {
+            successFn && successFn.call(null, response)
+        }, (error) => {
+            errorFn && errorFn.call(null, error)
+        })
     }
 
 };
