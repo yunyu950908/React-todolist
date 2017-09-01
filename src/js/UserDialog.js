@@ -8,7 +8,8 @@ import {signUp, signIn, sendPasswordResetEmail} from "./leanCloud";
 import SignInOrSignUp from "./SignInOrSignUp"
 // 重置密码 组件
 import ForgetPasswordForm from "./ForgetPasswordForm";
-
+// 判断输入合法
+import {VerifyData} from "./VerifyData"
 
 // Component UserDialog
 export default class UserDialog extends Component {
@@ -29,6 +30,11 @@ export default class UserDialog extends Component {
     signUp(e) {
         e.preventDefault();
         let {email, username, password} = this.state.formData;
+
+        // 判断输入是否合法
+        if (!(VerifyData.isEmail(email) && VerifyData.isUsername(username) && VerifyData.isPassword(password))) {
+            return;
+        }
         let success = (user) => {
             this.props.onSignUp.call(null, user);
             console.log(user)
@@ -67,6 +73,9 @@ export default class UserDialog extends Component {
     signIn(e) {
         e.preventDefault();
         let {username, password} = this.state.formData;
+        if (!(VerifyData.isUsername(username) && VerifyData.isPassword(password))) {
+            return;
+        }
         let success = (user) => {
             this.props.onSignIn.call(null, user)
         };
