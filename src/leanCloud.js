@@ -119,6 +119,20 @@ export const TodoModel = {
         }, (error) => {
             errorFn && errorFn.call(null, error)
         })
+    },
+    // 更新对象
+    update({id, status, title, deleted}, successFn, errorFn){
+        let todo = AV.Object.createWithoutData("Todo", id);
+        // 局部更新 + 允许其他false
+        title !== undefined && todo.set("title", title);
+        status !== undefined && todo.set("status", status);
+        deleted !== undefined && todo.set("deleted", deleted);
+
+        todo.save().then((response) => {
+            successFn && successFn.call(null, response)
+        }, (error) => {
+            errorFn && errorFn.call(null, error)
+        })
     }
 
 };
