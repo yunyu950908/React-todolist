@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 // CSS
-import "./UserDialog.css";
+import "../css/UserDialog.css";
 // leanCloud
 import {signUp, signIn, sendPasswordResetEmail} from "./leanCloud";
 

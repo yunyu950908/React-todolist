@@ -1,5 +1,5 @@
 import React from 'react';
-import './TodoInput.css';
+import '../css/TodoInput.css';
 
 // Component TodoInput
 export default function (props) {

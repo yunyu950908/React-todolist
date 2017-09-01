@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 // CSS
-import './reset.css';
+import '../css/reset.css';
 import 'normalize.css';
-import './App.css';
+import '../css/App.css';
 // Component
 import TodoInput from './TodoInput';
 import TodoItem from './TodoItem';

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './TodoItem.css';
+import '../css/TodoItem.css';
 import {uploadTodos} from "./leanCloud"
 
 // Component TodoItem
