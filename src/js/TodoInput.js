@@ -17,7 +17,7 @@ export default function (props) {
 // [回车] 事件，通知 <App/> 改 todoList
 function submit(props, e) {
     if (e.key === 'Enter') {
-        props.onSubmit(e)
+            props.onSubmit(e)
     }
 }
 

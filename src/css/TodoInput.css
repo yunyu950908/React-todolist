@@ -2,7 +2,7 @@
      font-size: 16px;
      font-family: "Microsoft Yahei",sans-serif;
      color: rgba(0,0,0,.8);
-     width: 100%;
+     width: 32em;
      line-height: 1.8;
      margin-bottom: 1em;
      border: none;
@@ -12,6 +12,6 @@
 
 .TodoInput::placeholder{
     text-align: center;
-    font-size: .6em;
+    font-size: .8em;
     user-select: none;
 }

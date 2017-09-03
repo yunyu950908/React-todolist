@@ -3,7 +3,6 @@ import React, {Component} from "react";
 import "../css/UserDialog.css";
 // leanCloud
 import {signUp, signIn, sendPasswordResetEmail} from "./leanCloud";
-
 // 切换 注册/登录 组件
 import SignInOrSignUp from "./SignInOrSignUp"
 // 重置密码 组件
@@ -120,7 +119,6 @@ export default class UserDialog extends Component {
         stateCopy.formData[key] = e.target.value;
         this.setState(stateCopy);
     }
-
 
     render() {
 

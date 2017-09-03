@@ -8,6 +8,7 @@ import TodoInput from './TodoInput';
 import TodoItem from './TodoItem';
 import UserDialog from './UserDialog';
 import AV, {getCurrentUser, signOut, TodoModel} from "./leanCloud";
+import LeftAside from "./LeftAside"
 
 // Component App
 class App extends Component {
@@ -40,34 +41,44 @@ class App extends Component {
                                   onDelete={this.delete.bind(this)}/>
                     </li>
                 )
-            })
+            });
         // 返回最终要渲染到页面的内容
         return (
             <div className="App">
-                <h1>
-                    {this.state.user.username || "我"}的待办清单
+                <aside>
+                    <LeftAside
+                        user={this.state.user}
+                    />
                     {this.state.user.id ?
-                        <button id="signOut" onClick={this.signOut.bind(this)}>登出</button> :
+                        <button id="signOut" onClick={this.signOut.bind(this)}>
+                            <span>&#xe65f;</span>
+                            <span>signout</span>
+                        </button> :
                         null}
-                </h1>
-                <div className="inputWrapper">
-                    {/*
-                     ** content 存储输入的 newTodo
-                     ** onSubmit 存储自定义函数 addTodo
-                     ** onChange 存储自定义函数 changeTitle
-                     **/}
-                    <TodoInput content={this.state.newTodo}
-                               onSubmit={this.addTodo.bind(this)}
-                               onChange={this.changeTitle.bind(this)}/>
-                </div>
-                {/* 用一个有序列表存储 Todos */}
-                <ol className='todoList'>
-                    {todos}
-                </ol>
-                {this.state.user.id ?
-                    null :
-                    <UserDialog onSignUp={this.onSignUpOrSignIn.bind(this)}
-                                onSignIn={this.onSignUpOrSignIn.bind(this)}/>}
+                </aside>
+                <main>
+                    <h1>
+                        {this.state.user.username || "我"}的待办清单
+                    </h1>
+                    <div className="inputWrapper">
+                        {/*
+                         ** content 存储输入的 newTodo
+                         ** onSubmit 存储自定义函数 addTodo
+                         ** onChange 存储自定义函数 changeTitle
+                         **/}
+                        <TodoInput content={this.state.newTodo}
+                                   onSubmit={this.addTodo.bind(this)}
+                                   onChange={this.changeTitle.bind(this)}/>
+                    </div>
+                    {/* 用一个有序列表存储 Todos */}
+                    <ol className='todoList'>
+                        {todos}
+                    </ol>
+                    {this.state.user.id ?
+                        null :
+                        <UserDialog onSignUp={this.onSignUpOrSignIn.bind(this)}
+                                    onSignIn={this.onSignUpOrSignIn.bind(this)}/>}
+                </main>
             </div>
         );
     }
@@ -95,14 +106,11 @@ class App extends Component {
 
     // 登出功能 ===> 清除数据
     signOut() {
-        let confirmSignOut = window.confirm("确认登出？")
-        if (confirmSignOut) {
-            signOut();
-            let stateCopy = JSON.parse(JSON.stringify(this.state));
-            stateCopy.user = {};
-            stateCopy.todoList = [];
-            this.setState(stateCopy);
-        }
+        signOut();
+        let stateCopy = JSON.parse(JSON.stringify(this.state));
+        stateCopy.user = {};
+        stateCopy.todoList = [];
+        this.setState(stateCopy);
     }
 
     // componentDidUpdate 在组件更新之后调用
@@ -142,23 +150,27 @@ class App extends Component {
 
     // 在TodoList里添加一个Todo
     addTodo(event) {
-        let newTodo = {
-            status: "",
-            title: event.target.value,
-            deleted: false
-        };
-        TodoModel.create(newTodo, (id) => {
-            // leanCloud.js ==> successFn(response.id)
-            newTodo.id = id;
-            this.state.todoList.push(newTodo);
-            this.setState({
-                newTodo: "",
-                todoList: this.state.todoList
-            })
-        }, (error) => {
-            // leanCloud.js ==> errorFn(error)
-            console.log(error)
-        });
+        if (event.target.value.trim() !== "") {
+            let newTodo = {
+                status: "",
+                title: event.target.value,
+                deleted: false
+            };
+            TodoModel.create(newTodo, (id) => {
+                // leanCloud.js ==> successFn(response.id)
+                newTodo.id = id;
+                this.state.todoList.push(newTodo);
+                this.setState({
+                    newTodo: "",
+                    todoList: this.state.todoList
+                })
+            }, (error) => {
+                // leanCloud.js ==> errorFn(error)
+                console.log(error)
+            });
+        } else {
+            alert("不允许输入空值！")
+        }
         // console.log(this.state.todoList)
     }
 }

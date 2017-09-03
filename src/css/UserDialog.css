@@ -5,12 +5,39 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background: linear-gradient(to top right, rgba(222, 222, 222, 0), rgba(0, 0, 0, .8));
+    /*background: linear-gradient(to top right, rgba(222, 222, 222, 0), rgba(0, 0, 0, .8));*/
+    /*background: url("");*/
+    animation: 20s loopBgColor infinite;
+    transition: background-color 1400ms ease-in-out;
     /* 居中 */
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 1;
 }
+
+/* 颜色渐变 */
+@keyframes loopBgColor {
+    0% {
+        background: #2b7cd3;
+    }
+    20% {
+        background: darkturquoise;
+    }
+    40% {
+        background: darkcyan;
+    }
+    60% {
+        background: darkblue;
+    }
+    80% {
+        background: #45ada8;
+    }
+    100% {
+        background: #2b7cd3;
+    }
+}
+/*  */
 
 .UserDialog {
     min-width: 16em;

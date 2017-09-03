@@ -1,7 +1,14 @@
 .TodoItem {
+    width: 32em;
     padding: .5em;
     display: flex;
     align-items: center;
+    justify-content: space-between;
+
+}
+
+.TodoItem > input {
+    width: 5vw;
 }
 
 .TodoItem > .title {
@@ -9,18 +16,21 @@
     padding: 0 .5em;
     font-family: "Microsoft Yahei", sans-serif;
     font-weight: lighter;
+    width: 85vw;
+    overflow-wrap: break-word;
 }
 
 .TodoItem > button {
     font-size: 12px;
     padding: .3em .6em;
-    border-radius: 10px;
+    border-radius: .5em;
     outline: none;
     border: none;
     color: rgba(247, 247, 247, .9);
     background: lightseagreen;
     cursor: pointer;
     user-select: none;
+    width: 10vw;
 }
 
 .TodoItem > button:hover {
