@@ -61,8 +61,9 @@
     font-size: 2em;
     color: rgba(240,66,66,.6);
     letter-spacing: .1em;
-    background: transparent;
     line-height: 1em;
+    width: 100%;
+    padding: .2em;
     position: absolute;
     bottom: .5em;
     left: 50%;
@@ -70,6 +71,7 @@
     overflow: hidden;
     outline: none;
     border: none;
+    background: transparent;
     cursor: pointer;
     user-select: none;
     transition: .8s ease all;
@@ -87,4 +89,7 @@
 
 #signOut:hover {
     color: #f02b2b;
+    background: rgba(0,0,0,.3);
+    border:1px dashed rgba(255,255,255,.3);
+    border-right: 2px dashed rgba(255,255,255,.3);
 }

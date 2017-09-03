@@ -33,8 +33,13 @@ export default class LeftAside extends Component {
         })
     }
 
-    changeClass() {
-        console.log("change")
+    changeClass(e) {
+        // let children = [].slice.call(e.target.parentNode.children);
+        let children = Array.prototype.slice.call(e.target.parentNode.children);
+        children.map((e, i) => {
+            e.classList.remove("selectedAsideBar");
+        });
+        e.target.classList.add("selectedAsideBar");
     }
 
     render() {
@@ -46,7 +51,7 @@ export default class LeftAside extends Component {
                 </header>
                 <nav className="asideBar">
                     <ul>
-                        <li className="unfinishedBin"
+                        <li className="unfinishedBin selectedAsideBar"
                             onClick={this.changeClass.bind(this)}>
                             待完成
                         </li>
@@ -58,7 +63,10 @@ export default class LeftAside extends Component {
                             onClick={this.changeClass.bind(this)}>
                             回收站
                         </li>
-                        <li>功能完善中...</li>
+                        <li className="function-todo"
+                            onClick={this.changeClass.bind(this)}>
+                            功能完善中...
+                        </li>
                     </ul>
                 </nav>
                 <footer></footer>
