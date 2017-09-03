@@ -1,6 +1,6 @@
 .TodoItem {
-    width: 32em;
-    padding: .5em;
+    width: 48em;
+    padding: .75em;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -12,17 +12,18 @@
 
 .TodoItem > .title {
     flex-grow: 1;
-    padding: 0 .5em;
     font-family: "Microsoft Yahei", sans-serif;
     font-weight: lighter;
+    font-size: 1.5em;
+    padding: 0 .75em;
     width: 85vw;
     overflow-wrap: break-word;
 }
 
 .TodoItem > button {
-    font-size: 12px;
-    padding: .3em .6em;
-    border-radius: .5em;
+    font-size: 18px;
+    padding: .45em .9em;
+    border-radius: .75em;
     outline: none;
     border: none;
     color: rgba(247, 247, 247, .9);

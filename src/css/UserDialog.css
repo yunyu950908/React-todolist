@@ -1,3 +1,7 @@
+input::placeholder{
+    text-align: center;
+}
+
 .UserDialog-Wrapper {
     /* 全屏 */
     position: fixed;
@@ -28,7 +32,7 @@
         background: darkcyan;
     }
     60% {
-        background: darkblue;
+        background: #236391;
     }
     80% {
         background: #45ada8;
@@ -42,7 +46,6 @@
 .UserDialog {
     min-width: 16em;
     border-radius: 10px;
-    background: white;
     box-shadow: 0 0 1em hsla(0, 0%, 0%, 0.35);
     background: #fff;
     padding-bottom: 1em;
