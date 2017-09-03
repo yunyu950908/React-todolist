@@ -26,6 +26,7 @@ export default class LeftAside extends Component {
             // user
             time: formatTime()
         };
+        // 右上角时钟
         setInterval(() => {
             this.setState({
                 time: formatTime()
@@ -33,13 +34,21 @@ export default class LeftAside extends Component {
         })
     }
 
+    // 改变选中样式，触发切换事件
     changeClass(e) {
+        let targetClass = e.target.className;
         // let children = [].slice.call(e.target.parentNode.children);
         let children = Array.prototype.slice.call(e.target.parentNode.children);
         children.map((e, i) => {
             e.classList.remove("selectedAsideBar");
         });
         e.target.classList.add("selectedAsideBar");
+        this.changeAsideBar(targetClass);
+    }
+
+    // 切换事件
+    changeAsideBar(){
+
     }
 
     render() {

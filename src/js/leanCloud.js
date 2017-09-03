@@ -111,15 +111,17 @@ export const TodoModel = {
             errorFn && errorFn.call(null, error)
         })
     },
-    // 删除对象
-    destroy(todoId, successFn, errorFn){
-        let todo = AV.Object.createWithoutData("Todo", todoId);
-        todo.destroy().then((response) => {
-            successFn && successFn.call(null, response)
-        }, (error) => {
-            errorFn && errorFn.call(null, error)
-        })
-    },
+    //删除对象 ==> 敏感操作 一般不需要 ，使用一个状态值保存更新即可
+    /*
+     destroy(todoId, successFn, errorFn){
+     let todo = AV.Object.createWithoutData("Todo", todoId);
+     todo.destroy().then((response) => {
+     successFn && successFn.call(null, response)
+     }, (error) => {
+     errorFn && errorFn.call(null, error)
+     })
+     },
+     */
     // 更新对象
     update({id, status, title, deleted}, successFn, errorFn){
         let todo = AV.Object.createWithoutData("Todo", id);

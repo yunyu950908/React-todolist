@@ -18,7 +18,7 @@ class App extends Component {
         this.state = {
             user: getCurrentUser() || {},
             newTodo: '',
-            todoList: []
+            todoList: [],
         };
         // 刷新判断登录状态 ==> 获取数据
         this.getUserInfo();
@@ -119,10 +119,17 @@ class App extends Component {
 
     // 删除一个 TodoItem
     delete(event, todo) {
-        TodoModel.destroy(todo.id, () => {
-            todo.deleted = true;
-            this.setState(this.state);
-        })
+        let oldDeleted = todo.deleted;
+        todo.deleted = todo.deleted === false;
+        this.setState(this.state);
+        TodoModel.update(todo, () => {
+                this.setState(this.state)
+            }, (error) => {
+                todo.status = oldDeleted;
+                this.setState(this.state);
+                alert("服务器未同步！")
+            }
+        );
     }
 
     // 切换 TodoItem 状态 ==> 更新leanCloud
@@ -137,7 +144,11 @@ class App extends Component {
                 this.setState(this.state);
                 alert("服务器未同步！")
             }
-        )
+        );
+        console.log(this.state.todoList);
+        this.filterUnfinished()
+        this.filterFinished()
+        this.filterDeleted()
     }
 
     // 让TotoInput从只读变为可写
@@ -172,6 +183,46 @@ class App extends Component {
             alert("不允许输入空值！")
         }
         // console.log(this.state.todoList)
+    }
+
+    //========================================状态过滤==========================================
+
+    // 过滤待完成
+
+    filterUnfinished() {
+        let Unfinished = [];
+        this.state.todoList.forEach(e => {
+            if (e.status === "" && e.deleted === false) {
+                Unfinished.push(e);
+            }
+        });
+        console.log("未完成")
+        console.log(Unfinished)
+    }
+
+    // 过滤已完成
+    filterFinished() {
+        let finidhed = [];
+        this.state.todoList.forEach(e => {
+            if (e.status !== "") {
+                finidhed.push(e);
+            }
+        });
+        console.log("已完成")
+        console.log(finidhed)
+    }
+
+    // 过滤已删除
+
+    filterDeleted() {
+        let deleted = [];
+        this.state.todoList.forEach(e => {
+            if (e.deleted) {
+                deleted.push(e)
+            }
+        });
+        console.log("已删除")
+        console.log(deleted)
     }
 }
 
