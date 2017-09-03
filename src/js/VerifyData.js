@@ -5,8 +5,9 @@
 export const VerifyData = {
     // 邮箱
     isEmail(email){
-        const isEmailReg1 = /^([^_]+[a-z0-9_\.]+[^_]+)@([^\-]+[a-z0-9\-]+[^\-])\.([a-z]{2,4})$/;
+        const isEmailReg1 = /^([^_]+[a-z0-9_\.]+[^_]+)@([^\-]*[a-z0-9\-]+[^\-]*)\.([a-z]{2,4})$/;
         let matchReg1 = email.match(isEmailReg1);
+        console.log(matchReg1)
         if (matchReg1 !== null) {
             const isEmailReg2 = /_{2,}/g;
             const isEmailReg3 = /-{2,}/g;
@@ -16,10 +17,10 @@ export const VerifyData = {
                 // 该邮箱合法：参考 新浪邮箱 + 万网域名
                 return true;
             } else {
-                alert("该邮箱不合法！")
+                alert("该邮箱不合法！1")
             }
         } else {
-            alert("该邮箱不合法！")
+            alert("该邮箱不合法！2")
         }
     },
 
