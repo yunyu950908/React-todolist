@@ -14,11 +14,12 @@ import LeftAside from "./LeftAside"
 class App extends Component {
     constructor(props) {
         super(props);
-        // 存储数据与状态，载入localStorage
+        // 存储数据与状态，设置默认值
         this.state = {
             user: getCurrentUser() || {},
             newTodo: '',
             todoList: [],
+            targetBar: "unfinished",
         };
         // 刷新判断登录状态 ==> 获取数据
         this.getUserInfo();
@@ -26,28 +27,22 @@ class App extends Component {
 
     render() {
         console.log("App render");
+        // console.log(this.state.todoList);
 
-        // todos 存储 TodoItem
-        let todos = this.state.todoList
-        // 过滤出还存在的Todo
-            .filter((item) => !item.deleted)
-            // 遍历每一个还在的Todo
-            .map((item, index) => {
-                return (
-                    // 返回TodoItem存进todos
-                    <li key={index}>
-                        <TodoItem todo={item}
-                                  onToggle={this.toggle.bind(this)}
-                                  onDelete={this.delete.bind(this)}/>
-                    </li>
-                )
-            });
+        // =============================== 待完成 已完成 回收站 =====================================
+        let Unfinished = this.createTags(this.filterUnfinished());
+        let Finished = this.createTags(this.filterFinished());
+        let Deleted = this.createTags(this.filterDeleted());
+        // ===============按照条件返回todos===============
+        let todos = this.setTags(Unfinished, Finished, Deleted);
+
         // 返回最终要渲染到页面的内容
         return (
             <div className="App">
                 <aside>
                     <LeftAside
                         user={this.state.user}
+                        changeBars={this.changeBars.bind(this)}
                     />
                     {this.state.user.id ?
                         <button id="signOut" onClick={this.signOut.bind(this)}>
@@ -73,6 +68,9 @@ class App extends Component {
                     {/* 用一个有序列表存储 Todos */}
                     <ol className='todoList'>
                         {todos}
+                        {/*{Unfinished}*/}
+                        {/*{Finished}*/}
+                        {/*{Deleted}*/}
                     </ol>
                     {this.state.user.id ?
                         null :
@@ -145,10 +143,6 @@ class App extends Component {
                 alert("服务器未同步！")
             }
         );
-        console.log(this.state.todoList);
-        this.filterUnfinished()
-        this.filterFinished()
-        this.filterDeleted()
     }
 
     // 让TotoInput从只读变为可写
@@ -196,20 +190,18 @@ class App extends Component {
                 Unfinished.push(e);
             }
         });
-        console.log("未完成")
-        console.log(Unfinished)
+        return Unfinished;
     }
 
     // 过滤已完成
     filterFinished() {
         let finidhed = [];
         this.state.todoList.forEach(e => {
-            if (e.status !== "") {
+            if (e.status !== "" && e.deleted === false) {
                 finidhed.push(e);
             }
         });
-        console.log("已完成")
-        console.log(finidhed)
+        return finidhed;
     }
 
     // 过滤已删除
@@ -221,9 +213,50 @@ class App extends Component {
                 deleted.push(e)
             }
         });
-        console.log("已删除")
-        console.log(deleted)
+        return deleted
     }
+
+    //==================================创建标签=============================
+    createTags(todos) {
+        return todos.map((e, i) => {
+            return (
+                <li key={i}>
+                    <TodoItem todo={e}
+                              onToggle={this.toggle.bind(this)}
+                              onDelete={this.delete.bind(this)}/>
+                </li>
+            )
+        })
+    }
+
+    setTags(unfinished, finished, deleted) {
+        if (this.state.targetBar === "unfinished") {
+            return unfinished;
+        } else if (this.state.targetBar === "finished") {
+            return finished;
+        } else {
+            return deleted;
+        }
+    }
+
+    // =============================check selectedAsideBar================================
+    changeBars(target) {
+        // console.log(target);
+        if (target.classList.contains("unfinished")) {
+            this.setState({
+                targetBar: "unfinished"
+            });
+        } else if (target.classList.contains("finished")) {
+            this.setState({
+                targetBar: "finished"
+            });
+        } else {
+            this.setState({
+                targetBar: "recycle"
+            });
+        }
+    }
+
 }
 
 // 模块出口

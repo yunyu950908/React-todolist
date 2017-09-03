@@ -19,36 +19,60 @@ function formatTime() {
     return h + " : " + m + " : " + s;
 }
 
+function getAsideBars() {
+    return document.querySelectorAll(".asideBar ul li");
+}
+
 export default class LeftAside extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             // user
-            time: formatTime()
+            time: formatTime(),
+            asideBars: [],
         };
         // 右上角时钟
         setInterval(() => {
             this.setState({
-                time: formatTime()
+                time: formatTime(),
             })
-        })
+        }, 1000)
     }
 
     // 改变选中样式，触发切换事件
     changeClass(e) {
-        let targetClass = e.target.className;
         // let children = [].slice.call(e.target.parentNode.children);
-        let children = Array.prototype.slice.call(e.target.parentNode.children);
+        let children = Array.prototype.slice.call(getAsideBars());
         children.map((e, i) => {
             e.classList.remove("selectedAsideBar");
         });
         e.target.classList.add("selectedAsideBar");
-        this.changeAsideBar(targetClass);
+        // 存储到state
+        this.setState({
+            asideBars: children
+        });
+        // 通知父组件 切换展示
+        this.props.changeBars(e.target)
     }
 
-    // 切换事件
-    changeAsideBar(){
+    // 检查 selectedAsideBar
+    checkAsideBarClass() {
+        let selectedBar;
+        let asideBars = this.state.asideBars;
+        console.log(asideBars)
+        asideBars.forEach((e, i) => {
+            if (e.classList.contains("selectedAsideBar")) {
+                selectedBar = e;
+            }
+        });
+        console.log(selectedBar)
+    }
 
+    componentDidMount() {
+        let asideBars = [].slice.call(getAsideBars());
+        this.setState({
+            asideBars: asideBars
+        })
     }
 
     render() {
@@ -60,25 +84,23 @@ export default class LeftAside extends Component {
                 </header>
                 <nav className="asideBar">
                     <ul>
-                        <li className="unfinishedBin selectedAsideBar"
+                        <li className="unfinished selectedAsideBar"
                             onClick={this.changeClass.bind(this)}>
                             待完成
                         </li>
-                        <li className="finishedBin"
+                        <li className="finished"
                             onClick={this.changeClass.bind(this)}>
                             已完成
                         </li>
-                        <li className="recycleBin"
+                        <li className="recycle"
                             onClick={this.changeClass.bind(this)}>
                             回收站
                         </li>
-                        <li className="function-todo"
-                            onClick={this.changeClass.bind(this)}>
+                        <li className="function-todo">
                             功能完善中...
                         </li>
                     </ul>
                 </nav>
-                <footer></footer>
             </div>
         )
     }

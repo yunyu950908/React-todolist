@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 import '../css/TodoItem.css';
-import {uploadTodos} from "./leanCloud"
-
 // Component TodoItem
 export default class TodoItem extends Component {
     render() {
@@ -13,7 +11,9 @@ export default class TodoItem extends Component {
                        onChange={this.toggle.bind(this)}/>
                 {/*通知<App/>改TodoInput的span*/}
                 <span className="title">{this.props.todo.title}</span>
-                <button onClick={this.delete.bind(this)}>删除</button>
+                <button onClick={this.delete.bind(this)}>
+                    {this.props.todo.deleted ? "恢复" : "删除"}
+                </button>
             </div>
         )
     }
@@ -28,8 +28,8 @@ export default class TodoItem extends Component {
         this.props.onToggle(e, this.props.todo)
     }
 }
-export function error(error){
-    switch(error.code){
+export function error(error) {
+    switch (error.code) {
         case 210:
             alert('用户名与密码不匹配')
             break
