@@ -27,6 +27,6 @@
 9. leancloud 服务器存储用户数据
 
 ## 其他
-1. bug 提交或其他意见和建议，移步 [ isssues ](/issues)
+1. bug 提交或其他意见和建议，移步 [ isssues ](../../issues)
 2. Author：AlbertLee
 3. 使用 [ MIT ](./LICENSE) 协议
