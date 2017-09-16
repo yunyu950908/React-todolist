@@ -1,6 +1,6 @@
 ## React + leanCloud 制作一个记录代办事项的单页应用
 
-[预览链接](./build/index.html)
+[预览链接](https://yunyu950908.github.io/project-react-todolist/build)
 
 ## 目前完成的功能
 
