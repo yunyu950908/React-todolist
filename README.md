@@ -16,16 +16,16 @@
 
 ## 技能点
 
-0. npm 包管理器
 1. JSX + Mustache 语法糖
 2. React Component 组件化思想
 3. Component Lifecircle 组件生命周期
 4. Component props 组件通信
 5. React virtual DOM 虚拟 DOM 操作
 6. pure functional component / class component
-7. 常用 ES6 语法
-8. RegExp 正则表达式
-9. leancloud 服务器存储用户数据
+7. Lifting State Up 状态提升
+8. 常用 ES6 语法
+9. RegExp 正则表达式
+10. leancloud 服务器存储用户数据
 
 ## 其他
 1. bug 提交或其他意见和建议，移步 [ isssues ](../../issues)
